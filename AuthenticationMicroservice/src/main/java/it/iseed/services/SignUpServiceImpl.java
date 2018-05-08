@@ -12,7 +12,8 @@ package it.iseed.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import it.iseed.daos.UserDao;
@@ -33,8 +34,8 @@ public class SignUpServiceImpl implements SignUpService {
 	 * interfaccia per spedire mail, iniettato e  configurato 
 	 * per appoggiarsi ad un server smtp di google
 	 */
-//	@Autowired
-//	JavaMailSender mailSender;
+	@Autowired
+	JavaMailSender mailSender;
 	
 
 	public boolean createUser(String username, String email, String password) {
@@ -55,13 +56,14 @@ public class SignUpServiceImpl implements SignUpService {
 			
 			if(result != false) {
 				//invio della mail di conferma registrazione con successo
-//				SimpleMailMessage emailObj = new SimpleMailMessage();
-//				emailObj.setTo(email);
-//				emailObj.setSubject("Registrazione");
-//				emailObj.setText("Complimenti "+username+"! sei stato corretamente registrato sul nostro sito! \n"
-//						+ "Username: "+username+" \n"
-//								+ "Password: "+password);
-//				mailSender.send(emailObj);
+				System.out.println("Tentativo di invio email");//debug
+				SimpleMailMessage emailObj = new SimpleMailMessage();
+				emailObj.setTo(email);
+				emailObj.setSubject("Registrazione");
+				emailObj.setText("Complimenti "+username+"! sei stato corretamente registrato sul nostro sito! \n"
+						+ "Username: "+username+" \n"
+								+ "Password: "+password);
+				mailSender.send(emailObj);
 			}
 		}
 		
