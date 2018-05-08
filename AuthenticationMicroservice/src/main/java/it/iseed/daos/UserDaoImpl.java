@@ -122,7 +122,7 @@ public class UserDaoImpl implements UserDao {
 		boolean result = false;
 
 		//metodo "nativo"
-		Query q = entityManager.createNativeQuery("INSERT INTO USER (username,password,email) VALUES (:username, :password, :email)");
+		Query q = entityManager.createNativeQuery("INSERT INTO user (username,password,email) VALUES (:username, :password, :email)");
 		//id autogenerato
 		q.setParameter("username", username);
 		q.setParameter("password", password);

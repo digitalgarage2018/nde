@@ -12,9 +12,6 @@ package it.iseed.controllers;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +36,7 @@ public class LoginController {
 
 	/*
 	 * vincolo su post!
+	 * utilizzo della classe JsonResponseBody per uniformare le risposte
 	 */
 	@RequestMapping(
 			value = "/authentication/logIn",
@@ -53,28 +51,27 @@ public class LoginController {
 
 		try {
 
-			
 			/*
 			 * tento l'autenticazione
 			 */
 			Optional<User> loggedUser = loginService.authenticateUser(username, password);
-			
+
 			if( loggedUser.isPresent() ) {	
 				/*
 				 * utente correttamente loggato, caricato anche 
 				 * il suo wallet
 				 */
-				
+
 				/*
 				 * aggiungo l'utente correttamente loggato alla sessione
 				 */
 				//request.getSession().setAttribute("loggedUser", loggedUser.get());
-				
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get() ) );
-				
+
+				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get() ) );
+
 			}//if
 			else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.OK.value(), "Utente o Password errati" ) );
+				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Utente o Password errati" ) );
 			}
 
 		}catch(Exception e) {
@@ -82,6 +79,8 @@ public class LoginController {
 		}
 
 	}
+
+
 
 
 }

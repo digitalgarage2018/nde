@@ -74,7 +74,7 @@ public class WalletDaoImpl implements WalletDao {
 		boolean result = false;
 
 		//metodo "nativo"
-		Query q = entityManager.createNativeQuery("INSERT INTO WALLET (id_user,credit) VALUES (:idUser, :credit)");
+		Query q = entityManager.createNativeQuery("INSERT INTO wallet (id_user,credit) VALUES (:idUser, :credit)");
 		//id autogenerato
 		q.setParameter("idUser", idUser);
 		q.setParameter("credit", 10000);
