@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>AccountMicroservice</name>
-	<description>First Microservice in SpringBoot</description>
+	<description>Microservice in SpringBoot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -79,6 +79,8 @@
 			<scope>runtime</scope>
 			<version>5.1.31</version> <!-- without it gives errors-->
 		</dependency>
+		
+		
 	</dependencies>
 
 	<build>

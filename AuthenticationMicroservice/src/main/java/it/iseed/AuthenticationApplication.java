@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-public class BEApplication {
+public class AuthenticationApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(BEApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(AuthenticationApplication.class);
 
 	public static void main(String[] args){
-		SpringApplication.run(BEApplication.class, args);
+		SpringApplication.run(AuthenticationApplication.class, args);
 	}
 	
 	@Bean
