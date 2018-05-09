@@ -1,3 +1,13 @@
+/*
+ ============================================================================
+ Name        : EncryptionUtils.java
+ Author      : Alessio Onori
+ Version     : 1.0
+ Copyright   : Your copyright notice
+ Description : Utils per la crittazione basato sul template di Piergiorgio
+ ============================================================================
+ */
+
 package it.iseed.utils;
 
 

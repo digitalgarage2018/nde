@@ -17,12 +17,12 @@ public class JsonResponseBody{
 		this.response = response;
 	}
 	//@Getter
-    //@Setter
-    private int server;
-    //@Getter @Setter
-    private Object response;
-    
-	
+	//@Setter
+	private int server;
+	//@Getter @Setter
+	private Object response;
+
+
 	public int getServer() {
 		return server;
 	}

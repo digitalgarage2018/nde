@@ -1,3 +1,15 @@
+/*
+ ============================================================================
+ Name        : JwtUtils.java
+ Author      : Alessio Onori
+ Version     : 1.0
+ Copyright   : Your copyright notice
+ Description : Utils per la gestione dei JWT, particolati Cookie formattati JSON.
+ Basato sul template di Piergiorgio
+ ============================================================================
+ */
+
+
 package it.iseed.utils;
 
 import io.jsonwebtoken.*;

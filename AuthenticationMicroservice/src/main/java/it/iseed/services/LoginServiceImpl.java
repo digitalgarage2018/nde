@@ -98,6 +98,9 @@ public class LoginServiceImpl implements LoginService {
 
 
 
+	/*
+	 * by Piergiorgio
+	 */
 	@Override
 	public Optional<String> createJwt(String subject, String name, String permission, Date date) {
 		Date expDate = date;//now
@@ -116,7 +119,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 
-
+	/*
+	 * by Piergiorgio
+	 */
 	@Override
 	public Optional < Map<String, Object> > verifyJwtAndGetData(HttpServletRequest request) {
 		

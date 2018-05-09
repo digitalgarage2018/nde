@@ -5,11 +5,13 @@
  Version     : 1.0
  Copyright   : Your copyright notice
  Description : Controller per la gestione delle richieste di Login
+ Implementata la sessione con un JWT, una specie di Cookie in formato JSON
  ============================================================================
  */
 
 package it.iseed.controllers;
 
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -33,12 +35,12 @@ public class LoginController {
 	private LoginService loginService;
 
 
-
 	/*
 	 * vincolo su post!
 	 * utilizzo della classe JsonResponseBody per uniformare le risposte
 	 * 
-	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto
+	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto, che viene restituito
+	 * nel header al chiamante nel caso di avvenuta autenticazione con successo.
 	 */
 	@RequestMapping(
 			value = "/authentication/logIn",
@@ -46,7 +48,7 @@ public class LoginController {
 			method = RequestMethod.POST
 			)
 	public ResponseEntity<JsonResponseBody> userCheck(@RequestParam (value = "username") String username, @RequestParam (value = "password") String password ) {
-		
+
 		/*
 		 * il parametro userneme potrebbe contenere una mail
 		 */
@@ -65,14 +67,24 @@ public class LoginController {
 				 * il suo wallet
 				 */
 
-				/*
-				 * aggiungo l'utente correttamente loggato alla sessione
-				 */
-				//request.getSession().setAttribute("loggedUser", loggedUser.get());
+				//generate JWT
+				Optional<String> jwt = loginService.createJwt(""+loggedUser.get().getId(), loggedUser.get().getUsername(), "user", new Date());
+				if(jwt.isPresent()) {
+					/*
+					 * posso scegliere se restituire l'utente o una stringa di successo,
+					 * basta commentare adeguatamente
+					 */
+					return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
+					//					return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
+				}
+				else {
+					/*
+					 * possibile UnsupportedEncodingException
+					 */
+					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), "Token Error: UnsupportedEncodingException"));
+				}
 
-				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get() ) );
-
-			}//if
+			}//if logged User is present
 			else {
 				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Utente o Password errati" ) );
 			}
@@ -81,7 +93,7 @@ public class LoginController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
 		}
 
-	}
+	}//userCheck
 
 
 
