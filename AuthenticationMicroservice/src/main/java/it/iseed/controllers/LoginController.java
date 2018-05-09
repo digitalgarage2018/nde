@@ -37,6 +37,8 @@ public class LoginController {
 	/*
 	 * vincolo su post!
 	 * utilizzo della classe JsonResponseBody per uniformare le risposte
+	 * 
+	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto
 	 */
 	@RequestMapping(
 			value = "/authentication/logIn",
@@ -44,7 +46,7 @@ public class LoginController {
 			method = RequestMethod.POST
 			)
 	public ResponseEntity<JsonResponseBody> userCheck(@RequestParam (value = "username") String username, @RequestParam (value = "password") String password ) {
-
+		
 		/*
 		 * il parametro userneme potrebbe contenere una mail
 		 */
@@ -56,6 +58,7 @@ public class LoginController {
 			 */
 			Optional<User> loggedUser = loginService.authenticateUser(username, password);
 
+			//check if user exists in DB -> if exists generate JWT and send back to client
 			if( loggedUser.isPresent() ) {	
 				/*
 				 * utente correttamente loggato, caricato anche 
