@@ -62,6 +62,13 @@
 			<version>0.7.0</version>
 		</dependency>
 		<dependency>
+			<groupId>it.iseed.account</groupId>
+			<artifactId>Entities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/Entities-0.0.1-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
