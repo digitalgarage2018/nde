@@ -70,7 +70,7 @@ public class PerAlessandroAuthentication{
 
 		//preparing and sending the HTTP POST
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<JsonResponseBody> responseEntity = restTemplate.exchange("http://localhost:8094/authentication/validateSession", HttpMethod.POST, request, JsonResponseBody.class);
+		ResponseEntity<JsonResponseBody> responseEntity = restTemplate.exchange("http://localhost:8070/authentication/validateSession", HttpMethod.POST, request, JsonResponseBody.class);
 
 		String username = (String) responseEntity.getBody().getResponse();
 		return username;
