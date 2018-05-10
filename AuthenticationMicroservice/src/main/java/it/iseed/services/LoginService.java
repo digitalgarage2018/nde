@@ -28,6 +28,10 @@ public interface LoginService {
 
 	public Optional<User> authenticateUser(String username, String password) ;
 
+	/*
+	 * subject è in relazione con ID dell'entity e fa da indentificatore
+	 * Subject è l'identificatore chiave del jwt, generato a partire dall'id dell'entity
+	 */
 	Optional<String> createJwt(String subject, String name, String permission, Date date) ;
 	//-> JwtUtils.generateJwt(...) 						 -> UnsupportedEncodingException
 

@@ -64,16 +64,24 @@ public class JwtUtils {
      */
     public static Map<String, Object> jwt2Map(String jwt) throws java.io.UnsupportedEncodingException, ExpiredJwtException{
 
+    	/*
+    	 * decritto il jwt
+    	 */
         Jws<Claims> claim = Jwts.parser()
                 .setSigningKey("myPersonalSecretKey12345".getBytes("UTF-8"))
                 .parseClaimsJws(jwt);
 
+        /*
+         * recupero i parametri salvati precedentemente
+         */
         String name = claim.getBody().get("name", String.class);
         String scope = (String) claim.getBody().get("scope");
-
         Date expDate = claim.getBody().getExpiration();
         String subj = claim.getBody().getSubject();
 
+        /*
+         * costruisco la mappa contentente le info
+         */
         Map<String, Object> userData = new HashMap<>();
         userData.put("name", name);
         userData.put("scope", scope);

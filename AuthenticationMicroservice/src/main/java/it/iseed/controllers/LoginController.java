@@ -11,9 +11,13 @@
 
 package it.iseed.controllers;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import it.iseed.entities.JsonResponseBody;
 import it.iseed.entities.User;
@@ -35,6 +40,11 @@ public class LoginController {
 	private LoginService loginService;
 
 
+	@RequestMapping("/authentication/test")
+    public String test(){
+        return "Authentication service works correctly";
+    }
+	
 	/*
 	 * vincolo su post!
 	 * utilizzo della classe JsonResponseBody per uniformare le risposte
@@ -47,7 +57,7 @@ public class LoginController {
 			params = { "username", "password" }, 
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> userCheck(@RequestParam (value = "username") String username, @RequestParam (value = "password") String password ) {
+	public ResponseEntity<JsonResponseBody> logIn(@RequestParam (value = "username") String username, @RequestParam (value = "password") String password ) {
 
 		/*
 		 * il parametro userneme potrebbe contenere una mail
@@ -94,8 +104,35 @@ public class LoginController {
 		}
 
 	}//userCheck
+	
+	
+	
+	
+	/*
+	 * servizio offerto all'esterno agli altri microservices per autenticare le richieste 
+	 * che arrivano loro
+	 * 
+	 * Migliorabile: try e catch non dovrebbero stare a livello di controller, bensì sotto nei services
+	 * ==> MIGLIORATO: uso di Optional e gestione eccezzioni a livello più basso
+	 */
+	@RequestMapping(
+			value = "/authentication/validateSession"
+			)
+	public ResponseEntity<JsonResponseBody> validateSession( HttpServletRequest request ) {
 
-
-
+		//request -> fetch JWT -> recover User Data -> Get user accounts from DB
+		Optional< Map<String, Object> > userData = loginService.verifyJwtAndGetData(request);
+		if( userData.isPresent() ) {
+			//provvisiorio: ritorno il nome dell'utente a cui è associato il token
+			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), userData.get().get("name") ));
+		}
+		else {
+			//UnsoportedEncoding, Expiration time, oppure User not Logged
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JsonResponseBody(HttpStatus.GATEWAY_TIMEOUT.value(), "Session Expired oppure User not logged! Login first!" ));
+		}
+	}//validateSession
+	
+	
+	
 
 }
