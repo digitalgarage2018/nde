@@ -145,6 +145,33 @@ public class LoginServiceImpl implements LoginService {
         
         return userData;
 	}
+	
+	
+	/*
+	 * per validare i servizi locali
+	 */
+	@Override
+	public Optional < Map<String, Object> > verifyJwtAndGetData(String jwt) {
+		
+		Optional < Map<String, Object>  > userData = Optional.empty();
+		
+        if(jwt == null){
+        	//utente non autenticato
+        	log.info("Authentication token not found in the request");
+            //throw new UserNotLoggedException("Authentication token not found in the request");
+        }
+        else {
+        	try {
+				userData = Optional.of( JwtUtils.jwt2Map(jwt) );
+			} catch (ExpiredJwtException e) {
+				log.info("ExpiredJwtException: "+e.getMessage());
+			} catch (UnsupportedEncodingException e) {
+				log.info("UnsupportedEncodingException: "+e.getMessage());
+			}
+        }
+        
+        return userData;
+	}
 
 	
 	

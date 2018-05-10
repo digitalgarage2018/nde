@@ -50,8 +50,11 @@ public class User implements Serializable{
 	@NotEmpty 
 	private String email;
 	
-	@Transient//consente di non persistere l'attributo nel db
+	//@Transient//consente di non persistere l'attributo nel db
 	private Wallet wallet;
+	
+	//@Transient//consente di non persistere l'attributo nel db
+	private Wishlist wishlist;
 	
 	
 
@@ -88,6 +91,10 @@ public class User implements Serializable{
 	public Wallet getWallet() {
 		return wallet;
 	}
+	
+	public Wishlist getWishList() {
+		return wishlist;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -107,6 +114,10 @@ public class User implements Serializable{
 	
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
+	}
+	
+	public void setWhisList(Wishlist wishlist) {
+		this.wishlist = wishlist;
 	}
 	
 	

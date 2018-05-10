@@ -39,5 +39,8 @@ public interface LoginService {
 	//-> JwtUtils.getJwtFromHttpRequest(request)		-> UserNotLoggedException
 	// 	  -> JwtUtils.jwt2Map(jwt)						-> UnsupportedEncodingException
 	//												->  ExpiredJwtException
+	
+	//per servizi locali a questo microservice
+	Optional< Map<String, Object> > verifyJwtAndGetData(String jwt) ;
 
 }

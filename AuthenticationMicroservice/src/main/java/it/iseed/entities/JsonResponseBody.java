@@ -1,3 +1,14 @@
+/*
+ ============================================================================
+ Name        : UserEntity.java
+ Author      : Alessio Onori
+ Version     : 1.0
+ Copyright   : Your copyright notice
+ Description : Bean/entity WRAPPER che mi consente di trattare uniformemente
+ tutte le riposte dei microservizi, per ritornare oggettin in formato JSON
+ ============================================================================
+ */
+
 package it.iseed.entities;
 
 import lombok.AllArgsConstructor;
