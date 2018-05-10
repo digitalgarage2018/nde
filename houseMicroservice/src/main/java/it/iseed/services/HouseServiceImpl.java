@@ -26,7 +26,12 @@ public class HouseServiceImpl implements HouseService{
 	}
 	
 	@Override
-	public List<House> findByFilterParameters(Map<String, String> parameters) {
-		return houseDao.findByFilterParameters(parameters);
+	public List<House> findByFilterParametersAndCityName(Map<String, String> parameters) {
+		return houseDao.findByFilterParametersAndCityName(parameters);
+	}
+	
+	@Override
+	public List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters) {
+		return houseDao.findByFilterParametersAndMapCoordinates(parameters);
 	}
 }

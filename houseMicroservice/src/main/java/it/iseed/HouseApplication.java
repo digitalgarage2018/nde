@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HouseApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(HouseApplication.class);
-
+	
 	public static void main(String[] args){
 		SpringApplication.run(HouseApplication.class, args);
 	}

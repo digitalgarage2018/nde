@@ -35,13 +35,20 @@ public class HouseDaoImpl implements HouseDao{
 		return query.getResultList();
 	}
 
-	public List<House> findByFilterParameters(Map<String, String> parameters) {
-		TypedQuery<House> query = entityManager.createQuery(queryBuilder(parameters), House.class);
+	@Override
+	public List<House> findByFilterParametersAndCityName(Map<String, String> parameters) {
+		TypedQuery<House> query = entityManager.createQuery(filterAndCityNameQueryBuilder(parameters), House.class);
+		return query.getResultList();
+	}
+	
+	@Override
+	public List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters) {
+		TypedQuery<House> query = entityManager.createQuery(filterAndMapCoordinatesQueryBuilder(parameters), House.class);
 		return query.getResultList();
 	}
 
-	private String queryBuilder(Map<String, String> parameters) {
-		String minPrice, maxPrice, minArea, maxArea, type, E_class, range, latitude, longitude;
+	private String filterQueryBuilder(Map<String, String> parameters) {
+		String minPrice, maxPrice, minArea, maxArea, type, E_class;
 
 		minPrice = parameters.get("minPrice");
 		maxPrice = parameters.get("maxPrice");
@@ -49,9 +56,6 @@ public class HouseDaoImpl implements HouseDao{
 		maxArea = parameters.get("maxArea");
 		type = parameters.get("type");
 		E_class = parameters.get("E_class");
-		latitude = parameters.get("latitude");
-		longitude = parameters.get("longitude");
-		range = parameters.get("range");
 
 		StringBuilder query = new StringBuilder();
 
@@ -77,16 +81,40 @@ public class HouseDaoImpl implements HouseDao{
 		if(E_class != null && !E_class.equals(""))
 			query.append(" and b.E_class='" + E_class + "'");
 
-		if(latitude != null && !latitude.equals("") 
-				&& longitude != null && !longitude.equals(""))
-			if(range != null && !range.equals(""))
-				query.append(zoneQueryBuilder(longitude, latitude, range));
-			else
-				query.append(zoneQueryBuilder(longitude, latitude, DEFAULT_RANGE));
-
-		System.out.println(query.toString());
-
 		return query.toString();
+
+	}
+
+	private String filterAndCityNameQueryBuilder(Map<String, String> parameters) {
+		StringBuilder query = new StringBuilder();
+
+		query.append(filterQueryBuilder(parameters));
+		
+		String cityName = parameters.get("city");
+		
+		query.append(" and b.city.name = '" + cityName +"'");
+		
+		return query.toString();
+
+	}
+
+	private String filterAndMapCoordinatesQueryBuilder(Map<String, String> parameters) {		
+		StringBuilder query = new StringBuilder();
+
+		query.append(filterQueryBuilder(parameters));
+		
+		String range, latitude, longitude;
+		latitude = parameters.get("latitude");
+		longitude = parameters.get("longitude");
+		range = parameters.get("range");
+
+		if(range != null && !range.equals(""))
+			query.append(zoneQueryBuilder(longitude, latitude, range));
+		else
+			query.append(zoneQueryBuilder(longitude, latitude, DEFAULT_RANGE));
+			
+		return query.toString();
+		
 	}
 
 	private String zoneQueryBuilder(String longitude, String latitude, String range) {
