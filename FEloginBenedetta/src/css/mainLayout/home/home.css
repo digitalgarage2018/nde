@@ -1,0 +1,17 @@
+.home-content .container{
+    margin-top:20px;
+    margin-bottom:20px;
+ }
+ .home-content .container .row{
+    margin-top:20px;
+    margin-bottom:20px;
+ }
+ 
+ .home-content .container .row.division{
+    background-color:#232323;
+ }
+ p.important.white{
+    color:white;
+    font-size:2em;
+    font-weight: 700;
+ }
