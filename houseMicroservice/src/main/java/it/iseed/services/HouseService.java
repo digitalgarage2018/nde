@@ -8,15 +8,12 @@ import it.iseed.entities.House;
 
 public interface HouseService {
 
-	House findById(int id);
+	Optional<House> findById(int id, String jwt);
 	
-	/*
-	 * con gestione sessione
-	 */
-	Optional< List<House> > findByCityName(String cityName, String jwt);
+	Optional<List<House>> findByCityName(String cityName, String jwt);
 	
-	List<House> findByFilterParametersAndCityName(Map<String, String> parameters);
+	Optional<List<House>> findByFilterParametersAndCityName(Map<String, String> parameters, String jwt);
 	
-	List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters);
+	Optional<List<House>> findByFilterParametersAndMapCoordinates(Map<String, String> parameters, String jwt);
 
 }
