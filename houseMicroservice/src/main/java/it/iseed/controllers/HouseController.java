@@ -33,10 +33,18 @@ public class HouseController {
 		List<House> houses = houseService.findByCityName(cityName);
 		return ResponseEntity.status(HttpStatus.OK).body(houses);
 	}
+	
 
-	@RequestMapping(value = "/findByFilterParameters", method = RequestMethod.POST)
-	public ResponseEntity<List<House>> find(@RequestBody Map<String, String> body){
-		List<House> houses = houseService.findByFilterParameters(body);	
+	@RequestMapping(value = "/findByFilterParametersAndCityName", method = RequestMethod.POST)
+	public ResponseEntity<List<House>> findByFilterParametersAndCityName(@RequestBody Map<String, String> body){
+		List<House> houses = houseService.findByFilterParametersAndCityName(body);	
+		return ResponseEntity.status(HttpStatus.OK).body(houses);
+	}
+	
+
+	@RequestMapping(value = "/findByFilterParametersAndMapCoordinates", method = RequestMethod.POST)
+	public ResponseEntity<List<House>> findByFilterParametersAndMapCoordinates(@RequestBody Map<String, String> body){
+		List<House> houses = houseService.findByFilterParametersAndMapCoordinates(body);	
 		return ResponseEntity.status(HttpStatus.OK).body(houses);
 	}
 

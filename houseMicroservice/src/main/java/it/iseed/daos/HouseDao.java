@@ -10,7 +10,9 @@ public interface HouseDao {
 	House findById(int id);
 	
 	List<House> findByCityName(String cityName);
+
+	List<House> findByFilterParametersAndCityName(Map<String, String> parameters);
 	
-	List<House> findByFilterParameters(Map<String, String> parameters);
+	List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters);
 
 }

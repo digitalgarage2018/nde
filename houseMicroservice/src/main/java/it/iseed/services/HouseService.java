@@ -11,6 +11,8 @@ public interface HouseService {
 	
 	List<House> findByCityName(String cityName);
 	
-	List<House> findByFilterParameters(Map<String, String> parameters);
+	List<House> findByFilterParametersAndCityName(Map<String, String> parameters);
+	
+	List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters);
 
 }
