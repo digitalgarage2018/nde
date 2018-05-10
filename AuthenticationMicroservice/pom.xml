@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>AccountMicroservice</name>
+	<name>AuthenticationMicroservice</name>
 	<description>Microservice in SpringBoot</description>
 
 	<parent>

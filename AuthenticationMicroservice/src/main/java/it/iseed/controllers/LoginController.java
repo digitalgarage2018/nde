@@ -27,13 +27,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.RestController;
 
 import it.iseed.entities.JsonResponseBody;
 import it.iseed.entities.User;
 import it.iseed.services.LoginService;
 
-@Controller
+@RestController
 public class LoginController {
 
 	@Autowired
@@ -43,6 +43,11 @@ public class LoginController {
 	@RequestMapping("/authentication/test")
     public String test(){
         return "Authentication service works correctly";
+    }
+	
+	@RequestMapping("/authentication/test2")
+    public ResponseEntity<JsonResponseBody> test2(){
+		return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Authentication service works correctly" ));
     }
 	
 	/*
