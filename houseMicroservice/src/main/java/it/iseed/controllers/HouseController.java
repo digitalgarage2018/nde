@@ -70,7 +70,7 @@ public class HouseController {
 
 	@RequestMapping(value = "/findByFilterParametersAndMapCoordinates", method = RequestMethod.POST)
 	public ResponseEntity<JsonResponseBody> findByFilterParametersAndMapCoordinates(@RequestParam (value = "jwt") String jwt, @RequestBody Map<String, String> body){
-		Optional<List<House>> houses = houseService.findByFilterParametersAndCityName(body, jwt);
+		Optional<List<House>> houses = houseService.findByFilterParametersAndMapCoordinates(body, jwt);
 		
 		if(houses.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), houses.get()));

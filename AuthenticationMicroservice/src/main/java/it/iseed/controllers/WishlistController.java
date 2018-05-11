@@ -44,7 +44,7 @@ public class WishlistController {
 	@Autowired
 	private LoginService loginService;
 
-	@Autowired
+	//@Autowired
 	private WishlistService wishlistService;
 
 

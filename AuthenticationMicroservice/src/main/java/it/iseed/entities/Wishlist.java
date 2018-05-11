@@ -38,7 +38,7 @@ public class Wishlist implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private List<House> houses;
+//	private List<House> houses;
 	
 
 	public Wishlist() {
@@ -49,7 +49,7 @@ public class Wishlist implements Serializable{
 	public Wishlist(int id, List<House> houses) {
 		super();
 		this.id = id;
-		this.houses = houses;
+//		this.houses = houses;
 	}
 
 
@@ -58,9 +58,9 @@ public class Wishlist implements Serializable{
 	}
 
 
-	public List<House> getHouses() {
-		return houses;
-	}
+//	public List<House> getHouses() {
+//		return houses;
+//	}
 
 
 	public void setId(int id) {
@@ -68,9 +68,9 @@ public class Wishlist implements Serializable{
 	}
 
 
-	public void setHouses(List<House> houses) {
-		this.houses = houses;
-	}
+//	public void setHouses(List<House> houses) {
+//		this.houses = houses;
+//	}
 	
 	
 

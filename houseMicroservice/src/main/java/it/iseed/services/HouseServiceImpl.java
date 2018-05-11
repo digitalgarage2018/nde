@@ -46,7 +46,7 @@ public class HouseServiceImpl implements HouseService{
 	 * Implementato servizio di validazione Sessione
 	 */
 	@Override
-	public Optional<List<House>> findByCityName(String jwt, String cityName) {
+	public Optional<List<House>> findByCityName(String cityName, String jwt) {
 
 		//tento validazione sessione
 		Optional<String> username = getUserGivenJwt(jwt);
@@ -82,9 +82,11 @@ public class HouseServiceImpl implements HouseService{
 		Optional<String> username = getUserGivenJwt(jwt);
 
 		if(username.isPresent()) {
+			System.out.println("SCOMMESSA DEL CAFFE VINTA DA ALESSIO");//debug
 			return Optional.of( houseDao.findByFilterParametersAndMapCoordinates(parameters));
 		}
 		else {
+			System.out.println("SCOMMESSA VINTA DA ALESSANDRO");//debug
 			return Optional.empty();
 		}
 	}
