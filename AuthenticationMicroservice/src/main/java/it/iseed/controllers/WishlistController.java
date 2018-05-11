@@ -11,41 +11,28 @@
 
 package it.iseed.controllers;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.iseed.entities.House;
 import it.iseed.entities.JsonResponseBody;
-import it.iseed.entities.User;
 import it.iseed.entities.Wishlist;
-import it.iseed.services.LoginService;
 import it.iseed.services.WishlistService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/wishlist")
 public class WishlistController {
 
-	@Autowired
-	private LoginService loginService;
-
-	//@Autowired
-	private WishlistService wishlistService;
+//	//@Autowired
+//	private WishlistService wishlistService;
+	private WishlistService wishlistService = null;
 
 
 	@RequestMapping("/test")
@@ -106,7 +93,7 @@ public class WishlistController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), "user not authorized !" ));
 		}
 
-	}//addHouse
+	}//addWish
 
 
 

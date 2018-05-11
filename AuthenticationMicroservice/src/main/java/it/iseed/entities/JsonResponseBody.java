@@ -1,19 +1,19 @@
 /*
  ============================================================================
- Name        : UserEntity.java
+ Name        : JsonResponseBody.java
  Author      : Alessio Onori
  Version     : 1.0
  Copyright   : Your copyright notice
  Description : Bean/entity WRAPPER che mi consente di trattare uniformemente
- tutte le riposte dei microservizi, per ritornare oggettin in formato JSON
+ tutte le riposte dei microservizi, per ritornare oggetti in formato JSON
  ============================================================================
  */
 
 package it.iseed.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+//import lombok.AllArgsConstructor;
+//import lombok.Getter;
+//import lombok.Setter;
 
 //@AllArgsConstructor
 public class JsonResponseBody{

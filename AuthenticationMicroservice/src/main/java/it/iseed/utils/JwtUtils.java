@@ -13,7 +13,7 @@
 package it.iseed.utils;
 
 import io.jsonwebtoken.*;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

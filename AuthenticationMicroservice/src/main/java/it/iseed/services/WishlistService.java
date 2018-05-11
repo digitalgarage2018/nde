@@ -12,19 +12,16 @@
 
 package it.iseed.services;
 
-import java.util.Date;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 
-import it.iseed.entities.User;
 import it.iseed.entities.Wishlist;
 
 
 public interface WishlistService {
 
 	//jwt contiene anche l'id utente
+	//get by id User contenuto nel jwt
 	public Optional<Wishlist> getWishlist(String jwt);
 
 	//jwt contiene anche l'id utente

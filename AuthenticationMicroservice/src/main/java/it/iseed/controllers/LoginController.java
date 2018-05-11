@@ -11,7 +11,7 @@
 
 package it.iseed.controllers;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+//import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
 import java.util.Map;
@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,12 +31,17 @@ import org.springframework.web.bind.annotation.RestController;
 import it.iseed.entities.JsonResponseBody;
 import it.iseed.entities.User;
 import it.iseed.services.LoginService;
+import it.iseed.services.SessionService;
 
 @RestController
+@CrossOrigin
 public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private SessionService sessionService;
 
 
 	@RequestMapping("/authentication/test")
@@ -56,6 +60,8 @@ public class LoginController {
 	 * 
 	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto, che viene restituito
 	 * nel header al chiamante nel caso di avvenuta autenticazione con successo.
+	 * 
+	 * DA SISTEMARE, spostare il meccanismo di generazione jwt nel service dell'authenticate user
 	 */
 	@RequestMapping(
 			value = "/authentication/logIn",
@@ -68,10 +74,10 @@ public class LoginController {
 		 * il parametro userneme potrebbe contenere una mail
 		 */
 
-		try {
+//		try {
 
 			/*
-			 * tento l'autenticazione
+			 * tento l'autenticazione: mi interfaccio con LoginService
 			 */
 			Optional<User> loggedUser = loginService.authenticateUser(username, password);
 
@@ -82,8 +88,8 @@ public class LoginController {
 				 * il suo wallet
 				 */
 
-				//generate JWT
-				Optional<String> jwt = loginService.createJwt(""+loggedUser.get().getId(), loggedUser.get().getUsername(), "user", new Date());
+				//generate JWT: mi interfaccio con sessionService
+				Optional<String> jwt = sessionService.createJwt(""+loggedUser.get().getId(), loggedUser.get().getUsername(), "user", new Date());
 				if(jwt.isPresent()) {
 					/*
 					 * posso scegliere se restituire l'utente o una stringa di successo,
@@ -104,9 +110,9 @@ public class LoginController {
 				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Utente o Password errati" ) );
 			}
 
-		}catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
-		}
+//		}catch(Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
+//		}
 
 	}//userCheck
 	
@@ -126,7 +132,7 @@ public class LoginController {
 	public ResponseEntity<JsonResponseBody> validateSession( HttpServletRequest request ) {
 
 		//request -> fetch JWT -> recover User Data -> Get user accounts from DB
-		Optional< Map<String, Object> > userData = loginService.verifyJwtAndGetData(request);
+		Optional< Map<String, Object> > userData = sessionService.verifyJwtAndGetData(request);
 		if( userData.isPresent() ) {
 			//provvisiorio: ritorno il nome dell'utente a cui è associato il token
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), userData.get().get("name") ));

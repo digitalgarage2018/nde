@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class AuthenticationApplication {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = LoggerFactory.getLogger(AuthenticationApplication.class);
 
 	public static void main(String[] args){

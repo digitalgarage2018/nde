@@ -12,8 +12,6 @@ package it.iseed.daos;
 
 import java.util.Optional;
 
-import it.iseed.entities.House;
-import it.iseed.entities.User;
 import it.iseed.entities.Wishlist;
 
 
@@ -24,5 +22,7 @@ public interface WishlistDao {
 	public Optional<Wishlist> getWishlistByIdUser(int idUser);
 	
 	public boolean insertHouseByIdUser(int idUser, int idHouse);
+	
+	public boolean removeHouseByIdUser(int idUser, int idHouse);
 	
 }
