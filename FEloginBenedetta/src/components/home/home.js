@@ -6,7 +6,7 @@ export default class Home extends React.Component{
    constructor(props){ 
       super(props);
         this.state = {
-          usename: '',
+          username: '',
           password: '',
           showSuccess:false,
           showError:false,
@@ -42,7 +42,7 @@ export default class Home extends React.Component{
      loginError(errorData){
         this.setState({
                        showError:true, 
-                       errorMessage:"Errore durante il login: " + errorData.error + "hai fatto la registrazione?",
+                       errorMessage:"Errore durante il login: " + errorData.error,
                        showSuccess:false,
                        successMessage:""});
      }
