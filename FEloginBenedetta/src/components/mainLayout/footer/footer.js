@@ -9,7 +9,7 @@ export default class Footer extends React.Component{
       return( 
         <div className = "container-fluid footer">
         <div className = "row">
-           <div className = "col mr-auto">
+           <div className = "col mr-auto" align="center">
               <p>WebImmobiliare.it</p>
               <p>Via Larga, 1</p>
               <p>Milano, Italia</p>

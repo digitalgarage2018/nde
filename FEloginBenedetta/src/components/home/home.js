@@ -1,34 +1,101 @@
 import React from "react";
-import axios from 'axios';
+// import axios from 'axios';
+import LoginService from "./loginService"
 
 export default class Home extends React.Component{ 
    constructor(props){ 
       super(props);
         this.state = {
           usename: '',
-          password: ''
+          password: '',
+          showSuccess:false,
+          showError:false,
+          errorMessage:"",
+          successMessage:""
         }
+    this.loginService = new LoginService();
     }
+
     changeUsername(event){
          this.setState({username:event.target.value});
     }
+
     changePassword(event){
          this.setState({password:event.target.value});
     }
+
     onSubmit(event){
          event.preventDefault();
-         axios.get('http://localhost:8070//authentication/test')
+      /*    axios.get('http://localhost:8070//authentication/test')
          .then(res => {
              console.log(res);
-         })
+         }) */
     }
+
+    loginSuccess(dataResult){
+        this.setState({
+                       showSuccess:true, 
+                       successMessage:"Complimenti per il login, il tuo token è: " + dataResult.token,
+                       showError:false,
+                       errorMessage:""});
+     }
+     loginError(errorData){
+        this.setState({
+                       showError:true, 
+                       errorMessage:"Errore durante il login: " + errorData.error + "hai fatto la registrazione?",
+                       showSuccess:false,
+                       successMessage:""});
+     }
     login(event){
+        this.loginService.login(this.state.username, 
+            this.state.password, 
+            this.loginSuccess.bind(this), 
+            this.loginError.bind(this)
+            );
         console.log("Login con username: ", this.state.username);
         console.log("Login con password: ", this.state.password);
-    }
+    }   
 
+    getSuccessMessage(){
+        if(this.state.showSuccess){
+           return (
+      
+              <div style={{color:"green"}}>
+                 {this.state.successMessage}
+              </div>
+      
+           );
+        }else{
+          return (
+      
+              <div></div>
+      
+          );
+        }
+     }
+     getErrorMessage(){
+        if(this.state.showError){
+            return (
+      
+              <div style={{color:"red"}}>
+                  {this.state.errorMessage}
+              </div>
+      
+            );
+        }else{
+           return (
+      
+              <div></div>
+      
+           );
+        }
+     }
 
    render(){ 
+    var successMessage = this.getSuccessMessage();
+ 
+    var errorMessage = this.getErrorMessage();
+
       return( 
         <div style={{marginTop:"100px", minHeight:"70vh"}}>
             <div className = "container">
@@ -55,8 +122,10 @@ export default class Home extends React.Component{
                               type="submit"
                               className = "btn btn-primary pull-right"
                               onClick={this.login.bind(this)}>
-                              LogIn
+                              Log In
                           </button>
+                          {successMessage}
+                          {errorMessage}
                       </form>
                    </div>
               </div>

@@ -23,14 +23,20 @@ export default class Header extends React.Component{
            <span className="navbar-toggler-icon"></span>
            </button>
            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className="navbar-nav mr-auto">
-                 <a className="nav-item nav-link" href="#">
-                    Home
+               <div className = "navbar-nav mr-auto">
+                 <a className="nav-item nav-link" href="">Sign Up</a>
+               </div>
+              <div className="navbar-nav">
+                 <a className="nav-item nav-link" href="/Profile">
+                    Profile
                  </a>
               </div>
-              <div className = "navbar-nav">
-                 <a className="nav-item nav-link" href="">Sign Up</a>
+              <div className="navbar-nav">
+                 <a className="nav-item nav-link" href="/Map">
+                    Map
+                 </a>
               </div>
+              
            </div>
         </nav>
      </div>
