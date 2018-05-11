@@ -1,7 +1,5 @@
 import React from "react";
-import FirstSlideImage from "../../images/image1.png";
-import SecondSlideImage from "../../images/image2.png";
-import ThirdSlideImage from "../../images/image3.png";
+import axios from 'axios';
 
 export default class Home extends React.Component{ 
    constructor(props){ 
@@ -19,6 +17,10 @@ export default class Home extends React.Component{
     }
     onSubmit(event){
          event.preventDefault();
+         axios.get('http://localhost:8070//authentication/test')
+         .then(res => {
+             console.log(res);
+         })
     }
     login(event){
         console.log("Login con username: ", this.state.username);
