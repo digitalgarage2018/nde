@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>it.iseed.account</groupId>
-	<artifactId>AccountMicroservice</artifactId>
+	<artifactId>BEUserMicroservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>AuthenticationMicroservice</name>
+	<name>BEUserMicroservice</name>
 	<description>Microservice in SpringBoot</description>
 
 	<parent>
