@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.iseed.entities.JsonResponseBody;
@@ -72,7 +72,6 @@ public class LoginController {
 	 */
 	@RequestMapping(
 			value = "/logIn",
-//			params = { "username", "password" }, 
 			method = RequestMethod.POST
 			)
 	public ResponseEntity<JsonResponseBody> logIn(@RequestBody UserRequest request) {
@@ -104,13 +103,17 @@ public class LoginController {
 					/*
 					 * posso scegliere se restituire l'utente o una stringa di successo,
 					 * basta commentare adeguatamente
+					 * 
+					 * Settaggio degli header per corretta tramsissione jwt
 					 */
-					return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*")
+					return ResponseEntity.status(HttpStatus.OK)
+							.header("Access-Control-Allow-Origin", "*")
 							.header("Access-Control-Allow-Credentials", "true")
 							.header("Access-Control-Allow-Headers", "jwt")
 							.header("Access-Control-Expose-Headers", "jwt")
-							.header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
-					//					return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
+							.header("jwt", jwt.get())
+							.body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
+					//return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
 				}
 				else {
 					/*
@@ -128,7 +131,42 @@ public class LoginController {
 //			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
 //		}
 
-	}//userCheck
+	}//login
+	
+	
+	/*
+	 * classe che wrappa la richiesta
+	 */
+	private static class UserRequest {
+		
+		String username;
+		String password;
+		
+//		public UserRequest() {
+//			super();
+//		}
+//
+//		public void setUsername(String username) {
+//			this.username = username;
+//		}
+//
+//		public void setPassword(String password) {
+//			this.password = password;
+//		}
+
+		public String getUsername() {
+			return username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		@Override
+		public String toString() {
+			return "UserRequest [username=" + username + ", password=" + password + "]";
+		}
+	}
 	
 		
 	
