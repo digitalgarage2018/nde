@@ -21,6 +21,9 @@ public class House {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "city_fk")
 	private City city;
+//	
+//	@Column
+//	private String name;
 	
 	@Column
 	private String address;
@@ -110,6 +113,14 @@ public class House {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public City getCity() {
 		return city;

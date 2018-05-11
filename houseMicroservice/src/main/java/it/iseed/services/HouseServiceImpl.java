@@ -30,8 +30,15 @@ public class HouseServiceImpl implements HouseService{
 	HouseDao houseDao;
 
 	@Override
-	public House findById(int id) {
-		return houseDao.findById(id);	
+	public Optional<House> findById(int id, String jwt) {
+		Optional<String> username = getUserGivenJwt(jwt);
+
+		if( username.isPresent() ) {
+			return Optional.of(houseDao.findById(id));
+		}
+		else {
+			return Optional.empty();
+		}
 	}
 
 
@@ -39,7 +46,7 @@ public class HouseServiceImpl implements HouseService{
 	 * Implementato servizio di validazione Sessione
 	 */
 	@Override
-	public Optional< List<House> > findByCityName(String jwt, String cityName) {
+	public Optional<List<House>> findByCityName(String cityName, String jwt) {
 
 		//tento validazione sessione
 		Optional<String> username = getUserGivenJwt(jwt);
@@ -58,13 +65,30 @@ public class HouseServiceImpl implements HouseService{
 
 
 	@Override
-	public List<House> findByFilterParametersAndCityName(Map<String, String> parameters) {
-		return houseDao.findByFilterParametersAndCityName(parameters);
+	public Optional<List<House>> findByFilterParametersAndCityName(Map<String, String> parameters, String jwt) {
+		Optional<String> username = getUserGivenJwt(jwt);
+
+		if( username.isPresent() ) {
+			return Optional.of( houseDao.findByFilterParametersAndCityName(parameters));
+		}
+		else {
+			return Optional.empty();
+		}
+		
 	}
 
 	@Override
-	public List<House> findByFilterParametersAndMapCoordinates(Map<String, String> parameters) {
-		return houseDao.findByFilterParametersAndMapCoordinates(parameters);
+	public Optional<List<House>> findByFilterParametersAndMapCoordinates(Map<String, String> parameters, String jwt) {
+		Optional<String> username = getUserGivenJwt(jwt);
+
+		if(username.isPresent()) {
+			System.out.println("SCOMMESSA DEL CAFFE VINTA DA ALESSIO");//debug
+			return Optional.of( houseDao.findByFilterParametersAndMapCoordinates(parameters));
+		}
+		else {
+			System.out.println("SCOMMESSA VINTA DA ALESSANDRO");//debug
+			return Optional.empty();
+		}
 	}
 
 

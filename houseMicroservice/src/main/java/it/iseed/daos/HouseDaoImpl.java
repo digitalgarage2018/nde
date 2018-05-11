@@ -107,6 +107,7 @@ public class HouseDaoImpl implements HouseDao{
 		latitude = parameters.get("latitude");
 		longitude = parameters.get("longitude");
 		range = parameters.get("range");
+		System.out.println("lat:"+latitude+", long:"+longitude);//debug
 
 		if(range != null && !range.equals(""))
 			query.append(zoneQueryBuilder(longitude, latitude, range));
