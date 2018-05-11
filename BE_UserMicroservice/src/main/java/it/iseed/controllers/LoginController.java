@@ -105,7 +105,11 @@ public class LoginController {
 					 * posso scegliere se restituire l'utente o una stringa di successo,
 					 * basta commentare adeguatamente
 					 */
-					return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
+					return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*")
+							.header("Access-Control-Allow-Credentials", "true")
+							.header("Access-Control-Allow-Headers", "jwt")
+							.header("Access-Control-Expose-Headers", "jwt")
+							.header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
 					//					return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
 				}
 				else {
