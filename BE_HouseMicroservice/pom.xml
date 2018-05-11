@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>it.iseed.account</groupId>
-	<artifactId>HouseMicroservice</artifactId>
+	<artifactId>BE_HouseMicroservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>HouseMicroservice</name>
+	<name>BE_HouseMicroservice</name>
 	<description>House Microservice in SpringBoot</description>
 
 	<parent>
