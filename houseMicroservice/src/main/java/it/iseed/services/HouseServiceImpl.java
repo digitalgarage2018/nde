@@ -93,8 +93,12 @@ public class HouseServiceImpl implements HouseService{
 
 
 
-	//makes the call to the AccountMicroservice
+	//makes the call to the UserMicroservice
 	/*
+	 * BY ALE: si potrebbe dedicargli una calsse per il servizio di validazione
+	 * trami exchange su microservizio dedicato....
+	 * al momento lasciato qui dentro
+	 * 
 	 * caso specifico, un solo user ritornato, ritorno il suo username
 	 * 
 	 * implementata gestione eccezioni
@@ -114,7 +118,7 @@ public class HouseServiceImpl implements HouseService{
 		//preparing and sending the HTTP POST
 		RestTemplate restTemplate = new RestTemplate();
 		try {
-			ResponseEntity<JsonResponseBody> responseEntity = restTemplate.exchange("http://localhost:8070/authentication/validateSession", HttpMethod.POST, request, JsonResponseBody.class);
+			ResponseEntity<JsonResponseBody> responseEntity = restTemplate.exchange("http://localhost:8070/session/validateSession", HttpMethod.POST, request, JsonResponseBody.class);
 			username = Optional.of( (String) responseEntity.getBody().getResponse() );
 		}
 		catch(RestClientException e) {

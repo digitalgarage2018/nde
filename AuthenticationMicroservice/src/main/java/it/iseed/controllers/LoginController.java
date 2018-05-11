@@ -14,10 +14,9 @@ package it.iseed.controllers;
 //import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +34,7 @@ import it.iseed.services.SessionService;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/authentication")
 public class LoginController {
 
 	@Autowired
@@ -44,12 +44,12 @@ public class LoginController {
 	private SessionService sessionService;
 
 
-	@RequestMapping("/authentication/test")
+	@RequestMapping("/test")
     public String test(){
         return "Authentication service works correctly";
     }
 	
-	@RequestMapping("/authentication/test2")
+	@RequestMapping("/test2")
     public ResponseEntity<JsonResponseBody> test2(){
 		return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Authentication service works correctly" ));
     }
@@ -64,7 +64,7 @@ public class LoginController {
 	 * DA SISTEMARE, spostare il meccanismo di generazione jwt nel service dell'authenticate user
 	 */
 	@RequestMapping(
-			value = "/authentication/logIn",
+			value = "/logIn",
 			params = { "username", "password" }, 
 			method = RequestMethod.POST
 			)
@@ -116,34 +116,7 @@ public class LoginController {
 
 	}//userCheck
 	
-	
-	
-	
-	/*
-	 * servizio offerto all'esterno agli altri microservices per autenticare le richieste 
-	 * che arrivano loro
-	 * 
-	 * Migliorabile: try e catch non dovrebbero stare a livello di controller, bensì sotto nei services
-	 * ==> MIGLIORATO: uso di Optional e gestione eccezzioni a livello più basso
-	 */
-	@RequestMapping(
-			value = "/authentication/validateSession"
-			)
-	public ResponseEntity<JsonResponseBody> validateSession( HttpServletRequest request ) {
-
-		//request -> fetch JWT -> recover User Data -> Get user accounts from DB
-		Optional< Map<String, Object> > userData = sessionService.verifyJwtAndGetData(request);
-		if( userData.isPresent() ) {
-			//provvisiorio: ritorno il nome dell'utente a cui è associato il token
-			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), userData.get().get("name") ));
-		}
-		else {
-			//UnsoportedEncoding, Expiration time, oppure User not Logged
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JsonResponseBody(HttpStatus.GATEWAY_TIMEOUT.value(), "Session Expired oppure User not logged! Login first!" ));
-		}
-	}//validateSession
-	
-	
+		
 	
 
 }
