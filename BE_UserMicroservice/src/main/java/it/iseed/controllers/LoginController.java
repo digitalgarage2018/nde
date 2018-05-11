@@ -16,12 +16,16 @@ package it.iseed.controllers;
 import java.util.Date;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +41,9 @@ import it.iseed.services.SessionService;
 @RequestMapping("/authentication")
 public class LoginController {
 
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+	
+	
 	@Autowired
 	private LoginService loginService;
 	
@@ -65,10 +72,10 @@ public class LoginController {
 	 */
 	@RequestMapping(
 			value = "/logIn",
-			params = { "username", "password" }, 
+//			params = { "username", "password" }, 
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> logIn(@RequestParam (value = "username") String username, @RequestParam (value = "password") String password ) {
+	public ResponseEntity<JsonResponseBody> logIn(@RequestBody UserRequest request) {
 
 		/*
 		 * il parametro userneme potrebbe contenere una mail
@@ -79,7 +86,10 @@ public class LoginController {
 			/*
 			 * tento l'autenticazione: mi interfaccio con LoginService
 			 */
-			Optional<User> loggedUser = loginService.authenticateUser(username, password);
+			
+			log.debug(request.toString());
+		
+			Optional<User> loggedUser = loginService.authenticateUser(request.getUsername(), request.getPassword());
 
 			//check if user exists in DB -> if exists generate JWT and send back to client
 			if( loggedUser.isPresent() ) {	
