@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-public class BEUserApplication {
+public class UserApplication {
 
 	@SuppressWarnings("unused")
-	private static final Logger log = LoggerFactory.getLogger(BEUserApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(UserApplication.class);
 
 	public static void main(String[] args){
-		SpringApplication.run(BEUserApplication.class, args);
+		SpringApplication.run(UserApplication.class, args);
 	}
 	
 	@Bean
