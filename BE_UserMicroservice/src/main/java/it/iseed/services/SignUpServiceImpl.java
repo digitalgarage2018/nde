@@ -78,8 +78,8 @@ public class SignUpServiceImpl implements SignUpService {
 				catch(Exception e){
 					log.info("Se sei su windows disabilita l'antivirus, problema di invio mail");
 				}
-			}
-		}
+			}//wallet!=false
+		}//user!=false
 		
 		return result;
 	}
