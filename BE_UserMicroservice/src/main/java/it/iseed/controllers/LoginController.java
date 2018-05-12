@@ -100,6 +100,10 @@ public class LoginController {
 				//generate JWT: mi interfaccio con sessionService
 				Optional<String> jwt = sessionService.createJwt(""+loggedUser.get().getId(), loggedUser.get().getUsername(), "user", new Date());
 				if(jwt.isPresent()) {
+					LoginResponse response= new LoginResponse();
+					response.setSuccess(true);
+					response.setToken(jwt.get());
+					
 					/*
 					 * posso scegliere se restituire l'utente o una stringa di successo,
 					 * basta commentare adeguatamente
@@ -111,8 +115,8 @@ public class LoginController {
 							.header("Access-Control-Allow-Credentials", "true")
 							.header("Access-Control-Allow-Headers", "jwt")
 							.header("Access-Control-Expose-Headers", "jwt")
-							.header("jwt", jwt.get())
-							.body(new JsonResponseBody(HttpStatus.OK.value(), "Success! User logged in!"));
+							//.header("jwt", jwt.get())
+							.body(new JsonResponseBody(HttpStatus.OK.value(), response));
 					//return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
 				}
 				else {
@@ -166,6 +170,32 @@ public class LoginController {
 		public String toString() {
 			return "UserRequest [username=" + username + ", password=" + password + "]";
 		}
+	}
+	
+	private class LoginResponse{
+		
+		private boolean success;
+		private String token;
+		
+		public boolean isSuccess() {
+			return success;
+		}
+		public void setSuccess(boolean success) {
+			this.success = success;
+		}
+		public String getToken() {
+			return token;
+		}
+		public void setToken(String token) {
+			this.token = token;
+		}
+		
+		@Override
+		public String toString() {
+			String json = "{success:" + this.success + ",token:" +this.token +"}";
+			return super.toString();
+		}
+		
 	}
 	
 		

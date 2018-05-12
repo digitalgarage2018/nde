@@ -8,17 +8,18 @@ export default class LoginService{
        });
 
        const config={
-           headers:{'Content-Type': 'application/jason; charset=UTF-8', 'Access-Control-Allow-Origin': '*',
-           },
+           headers:{'Content-Type': 'application/json; charset=UTF-8'
+           }
        };
 
-      axios.post("http://localhost:8070/authentication/logIn", {data,},config).then(function(result){
+      axios.post("http://localhost:8070/authentication/logIn", data, config).then(function(result){
       console.log(result);   
-      console.log("Login effettuato con successo, token: ",result.data);
-         onSuccess(result.data);
+      console.log("Login effettuato con successo, token: ", result.data.response);
+      if (result.data.response.success)   
+        onSuccess(result.data.response.token);
+      else onError();
       }, function(error){
          console.error(error);
-         onError(error.response);
       });
   }
 }
