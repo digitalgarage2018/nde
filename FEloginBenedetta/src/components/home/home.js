@@ -1,6 +1,6 @@
 import React from "react";
 // import axios from 'axios';
-import LoginService from "./loginService"
+import LoginService from "./loginService";
 
 export default class Home extends React.Component{ 
    constructor(props){ 

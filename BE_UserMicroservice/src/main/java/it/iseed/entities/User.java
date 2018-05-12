@@ -38,7 +38,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="username")
+	@Column(name="username", unique = true)
 	@NotEmpty 
 	private String username;
 
@@ -46,7 +46,7 @@ public class User implements Serializable{
 	@NotEmpty 
 	private String password;
 
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	@NotEmpty 
 	private String email;
 	
