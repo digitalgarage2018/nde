@@ -93,7 +93,7 @@ public class SignUpController {
 	@RequestMapping(
 			value = "/signUpJ"
 			)
-	public ResponseEntity<JsonResponseBody>  signUser(@RequestBody UserRequest request) {
+	public ResponseEntity<JsonResponseBody>  signUser(@RequestBody RequestDTO request) {
 
 //		try {
 
@@ -132,7 +132,7 @@ public class SignUpController {
 	/*
 	 * classe che wrappa la richiesta
 	 */
-	private static class UserRequest {
+	private static class RequestDTO {
 		
 		String username;
 		String email;
@@ -148,9 +148,9 @@ public class SignUpController {
 		}
 		@Override
 		public String toString() {
-			return "UserRequest [username=" + username + ", email=" + email + ", password=" + password + "]";
-		}	
-	}
+			return "RequestDTO [username=" + username + ", email=" + email + ", password=" + password + "]";
+		}
+	}//DTO
 	
 	
 	

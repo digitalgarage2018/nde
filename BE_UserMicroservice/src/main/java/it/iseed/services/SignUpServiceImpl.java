@@ -11,11 +11,14 @@
 package it.iseed.services;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import it.iseed.controllers.LoginController;
 import it.iseed.daos.UserDao;
 import it.iseed.daos.WalletDao;
 
@@ -23,6 +26,8 @@ import it.iseed.daos.WalletDao;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
+	
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	UserDao userDao;
@@ -43,7 +48,7 @@ public class SignUpServiceImpl implements SignUpService {
 		boolean result = false;
 		
 		//debug
-		System.out.println("tentativo di creazione userR");
+		log.info("tentativo di creazione user");
 		result = userDao.createUser(username, email, password);
 		
 		if(result != false) {

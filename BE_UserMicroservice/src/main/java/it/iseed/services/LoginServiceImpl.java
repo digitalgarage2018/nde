@@ -10,6 +10,7 @@
 
 package it.iseed.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -37,39 +38,38 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	WalletDao walletDao;
 	
+	@Autowired
+	private SessionService sessionService;
+	
 
 
-	public Optional<User> authenticateUser(String username, String password) {
+	public Optional<String> authenticateUser(String username, String password) {
+		
+		Optional<String> resultJWT = Optional.empty();
+		
+		Optional<User> user = userDao.getUserByUsername(username);
+		
 		/*
-		 * Username pu� contenere una password oppure una username, entrambi 
+		 * Username puo contenere una password oppure una username, entrambi 
 		 * contemplati ai fini del login
 		 */
+		if(!user.isPresent())
+			user = userDao.getUserByEmail(username);
 		
-		Optional<User> result = Optional.empty();
-		
-		result = userDao.getUserByUsername(username);
-		
-		if(!result.isPresent())
-			result = userDao.getUserByEmail(username);
-		
-		if( result.isPresent() ){
-			 if( !(result.get().getPassword().equals(password) && ( result.get().getUsername().equals(username) || result.get().getEmail().equals(username) )) ){
+		if( user.isPresent() ){
+			 if( !(user.get().getPassword().equals(password) && ( user.get().getUsername().equals(username) || user.get().getEmail().equals(username) )) ){
 				 /*
 				  * utente senza privilegi!
 				  */
-				 result = Optional.empty();
+				 resultJWT = Optional.empty();
 			 }
 			 else {
-				 /*
-				  * allaccio anche il wallet ad esso associato:
-				  * per ora non gestisco una possibile casistica di errore
-				  * ma sarebbe da fare!
-				  */
-				 result.get().setWallet( walletDao.getWalletByIdUser(result.get().getId()).get() );
+				//check if user exists in DB -> if exists generate JWT and send back to client
+				resultJWT = sessionService.createJwt(""+user.get().getId(), user.get().getUsername(), "user", new Date());
 			 }//else wallet
 		 }
 		
-		return result;
+		return resultJWT;
 	}
 
 

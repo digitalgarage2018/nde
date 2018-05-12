@@ -17,9 +17,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.iseed.controllers.LoginController;
 import it.iseed.entities.User;
 
 
@@ -27,6 +30,8 @@ import it.iseed.entities.User;
 @Transactional
 public class UserDaoImpl implements UserDao {
 
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+	
 	@PersistenceContext
 	public EntityManager entityManager;
 
@@ -117,9 +122,20 @@ public class UserDaoImpl implements UserDao {
 	/*
 	 * da migliorare la strategia di query
 	 */
-	public boolean createUser(String username, String email, String password) {
+	public boolean createUser(String username, String email, String password){
 
 		boolean result = false;
+		
+		/*
+		 * INSERIMENTO di utente con nome o pass gia presenti nel db:
+		 * If an Exception is being thrown in a different thread, a 
+		 * try/catch will not help. You need to thoroughly check for invalid dates 
+		 * before submitting them to your database to prevent this.
+		 */
+		if(getUserByUsername(username).isPresent())
+			return false;
+		if(getUserByEmail(email).isPresent())
+			return false;
 
 		//metodo "nativo"
 		Query q = entityManager.createNativeQuery("INSERT INTO user (username,password,email) VALUES (:username, :password, :email)");
@@ -133,7 +149,7 @@ public class UserDaoImpl implements UserDao {
 			result = true;
 		}
 		catch(Exception e){
-			System.out.println("Eccezzione in persistenza: "+e);//debug
+			log.info("Eccezzione in persistenza: "+e);//debug
 			result = false;
 		}
 
