@@ -61,14 +61,23 @@ public class SignUpServiceImpl implements SignUpService {
 			
 			if(result != false) {
 				//invio della mail di conferma registrazione con successo
-				System.out.println("Tentativo di invio email");//debug
+				log.info("Tentativo di invio email");//debug
 				SimpleMailMessage emailObj = new SimpleMailMessage();
 				emailObj.setTo(email);
 				emailObj.setSubject("Registrazione");
 				emailObj.setText("Complimenti "+username+"! sei stato corretamente registrato sul nostro sito! \n"
 						+ "Username: "+username+" \n"
 								+ "Password: "+password);
-				mailSender.send(emailObj);
+				/*
+				 * operazione critica: sarebbe da fare catch
+				 * su windows è necessario disabilitare l'antivirus
+				 */
+				try {
+					mailSender.send(emailObj);
+				}
+				catch(Exception e){
+					log.info("Se sei su windows disabilita l'antivirus, problema di invio mail");
+				}
 			}
 		}
 		
