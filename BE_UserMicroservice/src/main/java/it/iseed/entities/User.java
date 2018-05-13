@@ -18,7 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//import javax.persistence.Transient;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -38,7 +38,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="username")
+	@Column(name="username", unique = true)
 	@NotEmpty 
 	private String username;
 
@@ -46,14 +46,14 @@ public class User implements Serializable{
 	@NotEmpty 
 	private String password;
 
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	@NotEmpty 
 	private String email;
 	
-	//@Transient//consente di non persistere l'attributo nel db
+	@Transient//consente di non persistere l'attributo nel db
 	private Wallet wallet;
 	
-	//@Transient//consente di non persistere l'attributo nel db
+	@Transient//consente di non persistere l'attributo nel db
 	private Wishlist wishlist;
 	
 	

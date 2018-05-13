@@ -24,7 +24,7 @@ export default class Header extends React.Component{
            </button>
            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                <div className = "navbar-nav mr-auto">
-                 <a className="nav-item nav-link" href="">Sign Up</a>
+                 <a className="nav-item nav-link" href="/signUp">Sign Up</a>
                </div>
               <div className="navbar-nav">
                  <a className="nav-item nav-link" href="/Profile">

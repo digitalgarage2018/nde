@@ -4,6 +4,7 @@ import MainTemplate from "./components/mainLayout/template/mainTemplate";
 import Home from "./components/home/home";
 import Profile from "./components/profile/profile";
 import Map from "./components/map/map";
+import SignUp from "./components/signUp/signUp";
 
 class App extends Component {
   constructor(props){
@@ -20,6 +21,7 @@ class App extends Component {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/Profile' component={Profile}/>
                 <Route exact path='/Map' component={Map}/>
+                <Route exact path='/SignUp' component={SignUp}/>
             </Switch>
         </MainTemplate>
       </BrowserRouter>

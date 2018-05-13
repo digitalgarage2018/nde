@@ -1,6 +1,6 @@
 import React from "react";
 // import axios from 'axios';
-import LoginService from "./loginService"
+import LoginService from "./loginService";
 
 export default class Home extends React.Component{ 
    constructor(props){ 
@@ -35,14 +35,14 @@ export default class Home extends React.Component{
     loginSuccess(dataResult){
         this.setState({
                        showSuccess:true, 
-                       successMessage:"Complimenti per il login, il tuo token è: " + dataResult.token,
+                       successMessage:"Complimenti per il login, il tuo token è: " + dataResult,
                        showError:false,
                        errorMessage:""});
      }
-     loginError(errorData){
+     loginError(){
         this.setState({
                        showError:true, 
-                       errorMessage:"Errore durante il login: " + errorData.error,
+                       errorMessage:"Errore durante il login: ",
                        showSuccess:false,
                        successMessage:""});
      }
