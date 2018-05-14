@@ -18,7 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//import javax.persistence.Transient;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -50,10 +50,10 @@ public class User implements Serializable{
 	@NotEmpty 
 	private String email;
 	
-	//@Transient//consente di non persistere l'attributo nel db
+	@Transient//consente di non persistere l'attributo nel db
 	private Wallet wallet;
 	
-	//@Transient//consente di non persistere l'attributo nel db
+	@Transient//consente di non persistere l'attributo nel db
 	private Wishlist wishlist;
 	
 	

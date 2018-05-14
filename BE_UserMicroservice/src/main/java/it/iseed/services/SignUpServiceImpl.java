@@ -11,11 +11,14 @@
 package it.iseed.services;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import it.iseed.controllers.LoginController;
 import it.iseed.daos.UserDao;
 import it.iseed.daos.WalletDao;
 
@@ -23,6 +26,8 @@ import it.iseed.daos.WalletDao;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
+	
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
 	UserDao userDao;
@@ -43,7 +48,7 @@ public class SignUpServiceImpl implements SignUpService {
 		boolean result = false;
 		
 		//debug
-		System.out.println("tentativo di creazione userR");
+		log.info("tentativo di creazione user");
 		result = userDao.createUser(username, email, password);
 		
 		if(result != false) {
@@ -56,16 +61,25 @@ public class SignUpServiceImpl implements SignUpService {
 			
 			if(result != false) {
 				//invio della mail di conferma registrazione con successo
-				System.out.println("Tentativo di invio email");//debug
+				log.info("Tentativo di invio email");//debug
 				SimpleMailMessage emailObj = new SimpleMailMessage();
 				emailObj.setTo(email);
 				emailObj.setSubject("Registrazione");
 				emailObj.setText("Complimenti "+username+"! sei stato corretamente registrato sul nostro sito! \n"
 						+ "Username: "+username+" \n"
 								+ "Password: "+password);
-				mailSender.send(emailObj);
-			}
-		}
+				/*
+				 * operazione critica: sarebbe da fare catch
+				 * su windows è necessario disabilitare l'antivirus
+				 */
+				try {
+					mailSender.send(emailObj);
+				}
+				catch(Exception e){
+					log.info("Se sei su windows disabilita l'antivirus, problema di invio mail");
+				}
+			}//wallet!=false
+		}//user!=false
 		
 		return result;
 	}

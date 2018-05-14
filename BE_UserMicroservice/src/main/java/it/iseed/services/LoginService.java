@@ -15,13 +15,12 @@ package it.iseed.services;
 import java.util.Optional;
 
 
-import it.iseed.entities.User;
-
-
 public interface LoginService {
 
-
-	public Optional<User> authenticateUser(String username, String password) ;
+	/*
+	 * verifica credenziali e generazione jwt
+	 */
+	public Optional<String> authenticateUser(String username, String password) ;
 
 
 }

@@ -13,7 +13,6 @@ package it.iseed.controllers;
 
 //import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.util.Date;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -32,9 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.iseed.entities.JsonResponseBody;
-import it.iseed.entities.User;
 import it.iseed.services.LoginService;
-import it.iseed.services.SessionService;
 
 @RestController
 @CrossOrigin
@@ -42,163 +39,141 @@ import it.iseed.services.SessionService;
 public class LoginController {
 
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-	
-	
+
+
 	@Autowired
 	private LoginService loginService;
-	
-	@Autowired
-	private SessionService sessionService;
 
 
-	@RequestMapping("/test")
-    public String test(){
-        return "Authentication service works correctly";
-    }
-	
-	@RequestMapping("/test2")
-    public ResponseEntity<JsonResponseBody> test2(){
-		return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Authentication service works correctly" ));
-    }
-	
 	/*
-	 * vincolo su post!
-	 * utilizzo della classe JsonResponseBody per uniformare le risposte
+	 * la risposta è convertita in JSON in automatico graze alla
+	 * annotation @RestController (invece di @Controller)
+	 */
+	@RequestMapping("/test")
+	public String test(){
+		return "Authentication service works correctly";
+	}
+
+	@RequestMapping("/test2")
+	public ResponseEntity<JsonResponseBody> test2(){
+		return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Authentication service works correctly" ));
+	}
+
+
+	/*
+	 * vincolo di richiesta post!
 	 * 
 	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto, che viene restituito
 	 * nel header al chiamante nel caso di avvenuta autenticazione con successo.
 	 * 
-	 * DA SISTEMARE, spostare il meccanismo di generazione jwt nel service dell'authenticate user
 	 */
 	@RequestMapping(
 			value = "/logIn",
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> logIn(@RequestBody UserRequest request) {
+	public ResponseEntity<JsonResponseBody> logIn(@RequestBody RequestDTO request) {
 
-		/*
-		 * il parametro userneme potrebbe contenere una mail
-		 */
-
-//		try {
-
+		try {
 			/*
 			 * tento l'autenticazione: mi interfaccio con LoginService
 			 */
-			
-			log.debug(request.toString());
-		
-			Optional<User> loggedUser = loginService.authenticateUser(request.getUsername(), request.getPassword());
+			log.info(request.toString());//debug
+
+			Optional<String> jwt = loginService.authenticateUser(request.getUsername(), request.getPassword());
 
 			//check if user exists in DB -> if exists generate JWT and send back to client
-			if( loggedUser.isPresent() ) {	
+			if( jwt.isPresent() ) {	
 				/*
-				 * utente correttamente loggato, caricato anche 
-				 * il suo wallet
+				 * utente correttamente loggato, generato anche 
+				 * il suo jwt
 				 */
+				log.info(jwt.get());//debug
 
-				//generate JWT: mi interfaccio con sessionService
-				Optional<String> jwt = sessionService.createJwt(""+loggedUser.get().getId(), loggedUser.get().getUsername(), "user", new Date());
-				if(jwt.isPresent()) {
-					LoginResponse response= new LoginResponse();
-					response.setSuccess(true);
-					response.setToken(jwt.get());
-					
-					/*
-					 * posso scegliere se restituire l'utente o una stringa di successo,
-					 * basta commentare adeguatamente
-					 * 
-					 * Settaggio degli header per corretta tramsissione jwt
-					 */
-					return ResponseEntity.status(HttpStatus.OK)
-							.header("Access-Control-Allow-Origin", "*")
-							.header("Access-Control-Allow-Credentials", "true")
-							.header("Access-Control-Allow-Headers", "jwt")
-							.header("Access-Control-Expose-Headers", "jwt")
-							//.header("jwt", jwt.get())
-							.body(new JsonResponseBody(HttpStatus.OK.value(), response));
-					//return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt.get()).body(new JsonResponseBody(HttpStatus.OK.value(), loggedUser.get()));
-				}
-				else {
-					/*
-					 * possibile UnsupportedEncodingException
-					 */
-					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), "Token Error: UnsupportedEncodingException"));
-				}
+				ResponseDTO response= new ResponseDTO();
+				response.setSuccess(true);
+				response.setToken(jwt.get());
+
+				/* 
+				 * Settaggio degli header per corretto interfacciamento con axios
+				 */
+				return ResponseEntity.status(HttpStatus.OK)
+						.header("Access-Control-Allow-Origin", "*")
+						.header("Access-Control-Allow-Credentials", "true")
+						.header("Access-Control-Allow-Headers", "jwt")
+						.header("Access-Control-Expose-Headers", "jwt")
+						//.header("jwt", jwt.get()) //restituito nel body
+						.body(new JsonResponseBody(HttpStatus.OK.value(), response));
+				//.body(new JsonResponseBody(HttpStatus.OK.value(), "Utente correttamente loggato"));
 
 			}//if logged User is present
 			else {
-				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "Utente o Password errati" ) );
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), "Utente o Password errati" ) );
 			}
 
-//		}catch(Exception e) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
-//		}
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), "Error: " + e.toString()));
+		}
 
 	}//login
-	
-	
+
+
 	/*
-	 * classe che wrappa la richiesta
+	 * DTO che wrappa la richiesta
+	 * 
+	 * Essendo una nested class, in ingresso
+	 * sono costretto a farla statica 
 	 */
-	private static class UserRequest {
-		
+	private static class RequestDTO {
 		String username;
 		String password;
-		
-//		public UserRequest() {
-//			super();
-//		}
-//
-//		public void setUsername(String username) {
-//			this.username = username;
-//		}
-//
-//		public void setPassword(String password) {
-//			this.password = password;
-//		}
-
 		public String getUsername() {
 			return username;
 		}
-
 		public String getPassword() {
 			return password;
 		}
-
+		@SuppressWarnings("unused")
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		@SuppressWarnings("unused")
+		public void setPassword(String password) {
+			this.password = password;
+		}
 		@Override
 		public String toString() {
-			return "UserRequest [username=" + username + ", password=" + password + "]";
+			return "RequestDTO [username=" + username + ", password=" + password + "]";
 		}
-	}
-	
-	private class LoginResponse{
-		
+	}//DTO
+
+
+	/*
+	 * DTO che wrappa la risposta
+	 */
+	private class ResponseDTO{
 		private boolean success;
 		private String token;
-		
+		@SuppressWarnings("unused")
 		public boolean isSuccess() {
 			return success;
+		}
+		@SuppressWarnings("unused")
+		public String getToken() {
+			return token;
 		}
 		public void setSuccess(boolean success) {
 			this.success = success;
 		}
-		public String getToken() {
-			return token;
-		}
 		public void setToken(String token) {
 			this.token = token;
 		}
-		
 		@Override
 		public String toString() {
-			String json = "{success:" + this.success + ",token:" +this.token +"}";
-			return super.toString();
+			return "ResponseDTO [success=" + success + ", token=" + token + "]";
 		}
-		
-	}
-	
-		
-	
+	}//DTO
+
+
+
 
 }

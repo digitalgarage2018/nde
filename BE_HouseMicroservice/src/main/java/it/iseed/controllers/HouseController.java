@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import it.iseed.services.HouseService;
 
 @RestController
 @RequestMapping("/house")
+@CrossOrigin
 public class HouseController {
 
 	@Autowired
@@ -47,7 +49,7 @@ public class HouseController {
 		Optional< List<House> > houses = houseService.findByCityName(cityName, jwt);
 		
 		if( houses.isPresent() ) {
-			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), houses.get() ));
+			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), houses.get()));
 		}
 		else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), "user not authorized !" ));
