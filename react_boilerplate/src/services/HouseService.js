@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class HouseService{
     
-    getHouses(city, callback){
+    getHouses(city, callback, errorCallback){
 
       const url = "http://localhost:8071/house/findByCityName";
 
@@ -20,9 +20,11 @@ export default class HouseService{
       })
       .then(function (response) {
         console.log(response);
+        callback(response);
       })
       .catch(function (error) {
         console.log(error);
+        errorCallback(error);
       });
   }
 }

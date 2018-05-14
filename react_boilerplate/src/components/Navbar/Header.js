@@ -33,7 +33,7 @@ export default class Header extends React.Component{
                  </a>
               </div>
               <div className="navbar-nav">
-                 <a className="nav-item nav-link" href="/Map">
+                 <a className="nav-item nav-link" href="/initialSearch">
                     Map
                  </a>
               </div>

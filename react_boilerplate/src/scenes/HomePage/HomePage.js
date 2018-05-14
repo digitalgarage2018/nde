@@ -1,5 +1,4 @@
 import React from "react";
-// import axios from 'axios';
 import LoginService from "./../../services/LoginService";
 
 export default class Home extends React.Component{ 
@@ -35,7 +34,9 @@ export default class Home extends React.Component{
                        showError:false,
                        errorMessage:""});
             localStorage.setItem("token", dataResult);
-     }
+            this.props.history.push("/initialSearch");
+        }
+
      loginError(){
         this.setState({
                        showError:true, 
@@ -43,6 +44,7 @@ export default class Home extends React.Component{
                        showSuccess:false,
                        successMessage:""});
      }
+
     login(event){
         this.loginService.login(this.state.username, 
             this.state.password, 
@@ -121,8 +123,8 @@ export default class Home extends React.Component{
                               onClick={this.login.bind(this)}>
                               Log In
                           </button>
-                          {successMessage}
-                          {errorMessage}
+                          {localStorage.getItem("loginMessage")}
+                          {localStorage.removeItem("loginMessage")}
                       </form>
                    </div>
               </div>
