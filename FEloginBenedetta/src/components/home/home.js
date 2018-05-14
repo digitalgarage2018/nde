@@ -26,10 +26,6 @@ export default class Home extends React.Component{
 
     onSubmit(event){
          event.preventDefault();
-      /*    axios.get('http://localhost:8070//authentication/test')
-         .then(res => {
-             console.log(res);
-         }) */
     }
 
     loginSuccess(dataResult){
