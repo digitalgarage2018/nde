@@ -26,6 +26,9 @@ export default class Header extends React.Component{
                <div className = "navbar-nav mr-auto">
                  <a className="nav-item nav-link" href="/signUp">Sign Up</a>
                </div>
+               <div className = "navbar-nav">
+                 <a className="nav-item nav-link" href="/TableSort">Table</a>
+               </div>
               <div className="navbar-nav">
                  <a className="nav-item nav-link" href="/Profile">
                     Profile

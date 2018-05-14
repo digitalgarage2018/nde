@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export default class SignUpService{
     signUp(email, username, password, onSuccess, onError){
         console.log(email, username, password);
