@@ -50,6 +50,7 @@ public class HouseServiceImpl implements HouseService{
 
 		//tento validazione sessione
 		Optional<String> username = getUserGivenJwt(jwt);
+		System.out.println(username);
 
 		if( username.isPresent() ) {
 			//servizio
