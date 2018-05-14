@@ -1,12 +1,13 @@
 import React from "react";
 import HouseService from "./../../services/HouseService";
+import HouseComponent from "../../components/House/HouseComponent";
 
-export default class MapPage extends React.Component{ 
+export default class InitialSearchPage extends React.Component{
    constructor(props){ 
       super(props);
         this.state = {
           city:'',
-          houses:[]
+          housesList:[{houses: Array().fill(null)}]
         }
     this.houseService = new HouseService();
     }
@@ -22,13 +23,20 @@ export default class MapPage extends React.Component{
 
     getHouses(){
         let city = this.state.city;
-        let callback = (results) => {this.setState({houses:results.data.response})};
+        let callback = (results) => {
+            let houseResp = results.data.response;
+            this.setState({housesList: houseResp});
+            console.log(this.state.housesList);
+            localStorage.setItem("houseList", JSON.stringify(houseResp));
+            this.props.history.push("/map");
+        };
         let callbackError = (error) => {
             localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
             this.props.history.push("/");
         }; 
         console.log("inizializazione richiesta");
         this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));
+
     }   
 
    render(){ 
@@ -52,7 +60,6 @@ export default class MapPage extends React.Component{
                               onClick={this.getHouses.bind(this)}>
                               Cerca
                           </button>
-                          {this.state.houses[0]}
                       </form>
                    </div>
               </div>
