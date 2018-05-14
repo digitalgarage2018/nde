@@ -1,18 +1,33 @@
-import React from "react";
+import React from 'react';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 
-export default class Profile extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const products = [];
 
-render(){
-    return(
-        <div style={{marginTop:"100px"}}>
-        <p>
-           Sono la pagina profilo!
-        </p>  
-        </div>
+function addProducts(quantity) {
+  const startId = products.length;
+  for (let i = 0; i < quantity; i++) {
+    const id = startId + i;
+    products.push({
+      id: id,
+      name: 'Item name ' + id,
+      price: 2100 + i
+    });
+  }
+}
+
+addProducts(5);
+
+export default class BasicTable extends React.Component {
+  render() {
+    return (
+    <div style={{marginTop:"100px", minHeight:"70vh"}}>
+      <BootstrapTable data={ products }>
+          <TableHeaderColumn dataField='id' isKey={ true }>Product ID</TableHeaderColumn>
+          <TableHeaderColumn dataField='name'>Product Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='price'>Product Price</TableHeaderColumn>
+      </BootstrapTable>
+      </div>
     );
-    }
+  }
 }
