@@ -27,7 +27,9 @@ export class MapContainer extends React.Component {
             activeMarker: null
         });
 
-
+    onSubmit(event){
+        event.preventDefault();
+    }
 
     onMarkerClick = (props, marker, e) =>
         this.setState({
@@ -44,6 +46,7 @@ export class MapContainer extends React.Component {
 
     changeCity(event){
         this.setState({city:event.target.value});
+        console.log(this.state.city);
     };
 
     getHouses(){
@@ -52,6 +55,7 @@ export class MapContainer extends React.Component {
             let houseResp = results.data.response;
             this.setState({houseList: houseResp});
             console.log(this.state.houseList);
+            console.log("Siamo nella callback");
         };
         let callbackError = (error) => {
             localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
@@ -89,6 +93,7 @@ export class MapContainer extends React.Component {
                     <div className = "container">
                         <div className = "row">
                             <div className = "col-6 mr-auto ml-auto">
+                                <form onSubmit = {this.onSubmit.bind(this)}>
                                     <div className = "form-group">
                                         <input
                                             type="text"
@@ -102,6 +107,7 @@ export class MapContainer extends React.Component {
                                         onClick={this.getHouses.bind(this)}>
                                         Cerca
                                     </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -109,8 +115,10 @@ export class MapContainer extends React.Component {
                 <br/>
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick}>
 
-                    {this.state.houseList.map(house => <Marker key={house.id} onClick={this.onMarkerClick} name={house.address} position={{lat: house.latitude, lng: house.longitude}} />)}
-
+                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} name={house.address} priceTag={house.price} position={{lat: house.latitude, lng: house.longitude}} />)}
+                    {/*<Marker position={{lat: this.state.houseList[0].latitude, lng: this.state.houseList[0].longitude}}/>
+                    <Marker/>
+                    <Marker/>*/}
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}

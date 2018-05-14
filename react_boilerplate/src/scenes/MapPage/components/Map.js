@@ -32,17 +32,29 @@ export class Map extends React.Component {
     constructor(props) {
         super(props);
 
-        const {lat, lng} = this.props.initialCenter;
-        this.state = {
-            currentLocation: {
-                lat: this.props.houseList[0].city.latitude,
-                lng: this.props.houseList[0].city.longitude
+        const {latitude, longitude} = this.props.initialCenter;
+
+        if (this.props.houseList.length > 0) {
+            this.state = {
+                currentLocation: {
+                    lat: this.props.houseList[0].city.latitude,
+                    lng: this.props.houseList[0].city.longitude
+                }
+            }
+        } else {
+            this.state = {
+                currentLocation: {
+                    lat: 0,
+                    lng: 0
+                }
             }
         }
     }
 
     componentDidMount() {
         console.log(this.props.houseList);
+        console.log(this.state.currentLocation);
+        console.log(this.state.initialCenter);
         if (this.props.centerAroundCurrentLocation) {
             if (navigator && navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((pos) => {

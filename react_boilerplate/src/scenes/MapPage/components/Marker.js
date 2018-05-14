@@ -11,6 +11,7 @@ export class Marker extends React.Component {
         if (this.marker) {
             this.marker.setMap(null);
         }
+        console.log("Ciao sto morendo");
     }
 
     componentDidUpdate(prevProps) {
@@ -30,7 +31,7 @@ export class Marker extends React.Component {
 
         const pref = {
             map: map,
-            position: position
+            position: position,
         };
 
         this.marker = new google.maps.Marker(pref);
