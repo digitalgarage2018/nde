@@ -1,7 +1,7 @@
 import React from "react";
 import HouseService from "./../../services/HouseService";
 
-export default class MapPage extends React.Component{ 
+export default class InitialSearchPage extends React.Component{ 
    constructor(props){ 
       super(props);
         this.state = {
@@ -52,7 +52,7 @@ export default class MapPage extends React.Component{
                               onClick={this.getHouses.bind(this)}>
                               Cerca
                           </button>
-                          {this.state.houses[0]}
+                          {this.state.houses}
                       </form>
                    </div>
               </div>
