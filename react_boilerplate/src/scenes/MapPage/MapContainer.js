@@ -50,7 +50,7 @@ export class MapContainer extends React.Component {
     };
 
     getHouses(){
-        let city = this.state.city;
+        /*let city = this.state.city;
         let callback = (results) => {
             let houseResp = results.data.response;
             this.setState({houseList: houseResp});
@@ -62,7 +62,16 @@ export class MapContainer extends React.Component {
             this.props.history.push("/");
         };
         console.log("inizializazione richiesta");
-        this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));
+        this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));*/
+
+
+
+        /*
+        PEZZA delle 2 di notte
+         */
+        localStorage.setItem("cittaByMap",this.state.city);
+        this.props.history.push("/initialSearch");
+
 
     };
 
