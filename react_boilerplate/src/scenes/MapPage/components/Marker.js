@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {camelize} from './lib/String';
+import HouseService from "../../../services/HouseService";
 
 
 const evtNames = ['click', 'mouseover'];
 
 export class Marker extends React.Component {
+
+    getHouse(){
+        return this.props.house;
+    }
 
     componentWillUnmount() {
         if (this.marker) {
@@ -22,6 +27,7 @@ export class Marker extends React.Component {
     }
 
     renderMarker() {
+
         let {
             map, google, position, mapCenter
         } = this.props;
@@ -53,6 +59,7 @@ export class Marker extends React.Component {
 
     //GIANMARCO: not interacting with virtualDOM parts, so I can return null on this and not fucking up the view
     render() {
+        console.log("debug di house:"+JSON.stringify(this.props.house));
         return null;
     }
 }

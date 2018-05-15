@@ -124,7 +124,7 @@ export class MapContainer extends React.Component {
                 <br/>
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick}>
 
-                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} name={house.address} priceTag={house.price} position={{lat: house.latitude, lng: house.longitude}} />)}
+                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} house={house} name={house.address} priceTag={house.price} position={{lat: house.latitude, lng: house.longitude}} />)}
                     {/*<Marker position={{lat: this.state.houseList[0].latitude, lng: this.state.houseList[0].longitude}}/>
                     <Marker/>
                     <Marker/>*/}
