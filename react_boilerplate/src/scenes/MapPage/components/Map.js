@@ -108,6 +108,7 @@ export class Map extends React.Component {
             const mapConfig = {
                 center: center,
                 zoom: zoom,
+                gestureHandling: 'greedy'
             };
 
             this.map = new maps.Map(node, mapConfig);
