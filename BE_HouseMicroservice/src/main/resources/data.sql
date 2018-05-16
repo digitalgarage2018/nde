@@ -1,6 +1,6 @@
 INSERT INTO city(name,latitude,longitude) VALUES('Milano',45.46427,9.18951);
 INSERT INTO city(name,latitude,longitude) VALUES('Roma',41.89193,12.51133);
-INSERT INTO city(name,latitude,longitude) VALUES('Firenze', 43.769562, 11.255814);
+INSERT INTO city(name,latitude,longitude) VALUES('Firenze', 43.778945, 11.255385);
 INSERT INTO city(name,latitude,longitude) VALUES('Milazzo', 43.769562, 11.255814);
 
 

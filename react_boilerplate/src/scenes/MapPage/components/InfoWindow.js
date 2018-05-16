@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {camelize} from './lib/String';
 import ReactDOMServer from 'react-dom/server';
 import Logo from '../../../components/Navbar/notebook.png';
+import {Link} from 'react-router-dom';
+
+import {Button} from "../../../components/Button/Button";
 
 export class InfoWindow extends React.Component {
 
@@ -47,6 +50,10 @@ export class InfoWindow extends React.Component {
             <p> Area: {this.props.placeArea} mq</p>
             <p> E Class: {this.props.placeEclass} </p>
             <p> Type: {this.props.placeType} </p>
+
+            <a className="nav-item nav-link" href="/initialSearch">
+                Details
+            </a>
 
             {/*<p>
                 {this.props.place.priceTag}

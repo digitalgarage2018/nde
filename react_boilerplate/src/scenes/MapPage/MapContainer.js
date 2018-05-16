@@ -6,6 +6,7 @@ import { GoogleApiWrapper } from 'google-maps-react';
 import HouseService from "./../../services/HouseService";
 import InitialSearchPage from "../InitialSearchPage/InitialSearchPage";
 //import {LocationSearchInput} from './LocationSearchInput';
+import {Button} from "../../components/Button/Button";
 
 export class MapContainer extends React.Component {
     constructor(props) {
@@ -40,11 +41,17 @@ export class MapContainer extends React.Component {
             showingInfoWindow: true
         });
 
-    onInfoWindowClose = () =>
+    onInfoWindowClose () {
         this.setState({
             showingInfoWindow: false,
             activeMarker: null
         });
+        // console.log("chiusura");
+        // this.props.history.push("/");
+        this.onInfoWindowClick();
+    }
+
+
 
     changeCity(event){
         this.setState({city:event.target.value});
@@ -78,12 +85,12 @@ export class MapContainer extends React.Component {
     };
 
 
-    // onInfoWindowClick() {
-    //     console.log("Ciao Windows clisckckackaskd");
-    //     this.props.history.push("/");
-    //
-    //     // this.props.history.push(variable);
-    // }
+    onInfoWindowClick () {
+        console.log("Ciao Windows clisckckackaskd");
+        this.props.history.push("/");
+
+        // this.props.history.push(variable);
+    };
 
     render() {
         const style = {
@@ -150,31 +157,29 @@ export class MapContainer extends React.Component {
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
-                        onClose={this.onInfoWindowClose}
+                        onClose={this.onInfoWindowClose.bind(this)}
                         placeName={this.state.selectedPlace.name}
                         placePrice={this.state.selectedPlace.priceTag}
                         placeArea={this.state.selectedPlace.area}
                         placeEclass={this.state.selectedPlace.eClass}
                         placeType={this.state.selectedPlace.type}
-                       // placePrice={this.state.selectedPlace.price}
-
+                        handlerBottone={this.onInfoWindowClick.bind(this)}
                     >
-
-                        handler={  this.onInfoWindowClick }
-
-
-
+                        <Button title={"Bottone"} customOnClick={this.onInfoWindowClick.bind(this)}/>
                     </InfoWindow>
+
+                    {/*<button
+                        className = "btn btn-primary pull-right"
+                        onDoubleClick={ this.props.handlerButton  }
+                    >
+                        View details
+                    </button>*/}
+
 
 
                 </Map>
 
-                {/*<button
-                    className = "btn btn-primary pull-right"
-                    onClick={ this.onInfoWindowClick }
-                >
-                    View details
-                </button>*/}
+
 
             </div>
         )
