@@ -92,6 +92,12 @@ export class Map extends React.Component {
         }
     }
 
+    newCenter(e) {
+        this.setState({
+            currentLocation: {lat: e.latLng.lat(), lng: e.latLng.lng()}
+        })
+    }
+
     loadMap() {
         if (this.props && this.props.google) {
             // google is available
@@ -112,10 +118,18 @@ export class Map extends React.Component {
 
             this.map = new maps.Map(node, mapConfig);
 
+            //adding a single marker for center...doesn't work, it's static
+            /*this.markerCenter = new google.maps.Marker({
+                map: this.map,
+                position: center,
+            });*/
 
             evtNames.forEach(e => {
                 this.map.addListener(e, this.handleEvent(e));
             });
+
+            //Gianmarco: I can integrate this in the ^^ function, but let me declare it explicitly
+            this.map.addListener('click', (e) => {this.newCenter(e);})
 
             maps.event.trigger(this.map, 'ready');
 

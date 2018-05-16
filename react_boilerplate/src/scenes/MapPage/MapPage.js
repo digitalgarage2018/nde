@@ -20,7 +20,7 @@ export class MapPage extends React.Component {
             selectedPlace: {},
             houseList: JSON.parse(localStorage.getItem("houseList")),
             infoHouse: {},
-            city: ''
+            city: '',
         };
         this.houseService = new HouseService();
     }
@@ -50,7 +50,7 @@ export class MapPage extends React.Component {
         });
         // console.log("chiusura");
         // this.props.history.push("/");
-        this.onInfoWindowClick();
+        //this.onInfoWindowClick();
     }
 
 
@@ -155,6 +155,7 @@ export class MapPage extends React.Component {
                 <Filter handler={this.getHousesByMaxPrice.bind(this)}/>
 
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
+
 
                     {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
                                                                house={house}
