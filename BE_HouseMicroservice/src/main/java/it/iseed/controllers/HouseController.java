@@ -65,7 +65,6 @@ public class HouseController {
 		 * debug
 		 */
 		System.out.println("RICHIESTA IN INGRESSO ****************");
-		System.out.println("JWT:"+ body.get("jwt"));
 		for(String s : body.keySet()) {
 			System.out.println(s+": "+body.get(s));
 		}
@@ -77,6 +76,8 @@ public class HouseController {
 		else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), "user not authorized !" ));
 		}
+		
+		
 	}
 	
 

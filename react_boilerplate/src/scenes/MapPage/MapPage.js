@@ -50,7 +50,7 @@ export class MapPage extends React.Component {
         });
         // console.log("chiusura");
         // this.props.history.push("/");
-        this.onInfoWindowClick();
+       // this.onInfoWindowClick();
     }
 
 

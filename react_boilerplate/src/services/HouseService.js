@@ -30,12 +30,12 @@ export default class HouseService{
 
 
     //per ora cablato con city Milano
-    getHousesAleMaxPrice(callback, errorCallback){
+    getHousesAleMaxPrice(params, callback, errorCallback){
 
         const url = "http://localhost:8071/house/findByFilterParametersAndCityName";
-        const city = "Milano";//MilanoCablato
+        //const city = "Milano";//MilanoCablato
 
-        console.log(city, localStorage.getItem("token"));
+        console.log(params.city, localStorage.getItem("token"));
 
         /*
         serve invece una POSt!!
@@ -43,9 +43,13 @@ export default class HouseService{
 
         const data=JSON.stringify({
             'jwt' :localStorage.getItem("token"),
-            'city': city,
-            'maxPrice':'100000',
-            'minPrice': '0'
+            'city': params.city,
+            'minPrice': params.minPrice,
+            'maxPrice': params.maxPrice,
+            'minArea': params.minArea,
+            'maxArea': params.maxArea,
+            'type': params.type,
+            'E_class': params.E_class
         });
 
         const config={
@@ -63,25 +67,6 @@ export default class HouseService{
             //errorCallback(error);
         })
 
-       /* axios.get(url, {
-            params: {
-                'cityName': city,
-                'jwt': localStorage.getItem("token"),
-                'maxPrice': localStorage.getItem("maxPrice")
-            },
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-            }
-        })
-            .then(function (response) {
-                console.log(response);
-                callback(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-                errorCallback(error);
-            });*/
     }
 
 }

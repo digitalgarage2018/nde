@@ -10,13 +10,22 @@ export default class InitialSearchPage extends React.Component{
 
         this.state = {
           city:'',
+          prevCity:'Milano',
           housesList:[{houses: Array().fill(null)}]
         }
+
     this.houseService = new HouseService();
 
+        /*
+        pezza, chiamato da Map page per cambiare citta
+         */
        if(localStorage.getItem("cittaByMap")!= null ){
+
            let city = localStorage.getItem("cittaByMap");
+           //this.setState({prevCity: city});
            localStorage.removeItem("cittaByMap");
+
+
            let callback = (results) => {
                let houseResp = results.data.response;
                this.setState({housesList: houseResp});
@@ -24,13 +33,20 @@ export default class InitialSearchPage extends React.Component{
                localStorage.setItem("houseList", JSON.stringify(houseResp));
                this.props.history.push("/map");
            };
+
            let callbackError = (error) => {
                localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
                this.props.history.push("/");
            };
-           console.log("inizializazione richiesta");
+
+           console.log("inizializazione richiesta effettuata");
+
            this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));
        }
+
+       /*
+       chiamato da MAP, per ricercare tramite filtri di ricerca
+        */
        else if(localStorage.getItem("maxPrice")!= null){
 
            console.log("tentativo di ricerca per maxPrice")
@@ -51,8 +67,30 @@ export default class InitialSearchPage extends React.Component{
                this.props.history.push("/");
            };
 
-           console.log("inizializazione richiesta per maxPrice");
-           this.houseService.getHousesAleMaxPrice(callback.bind(this), callbackError.bind(this));
+           let city = this.state.prevCity;
+           console.log("il valore di prev city è:"+this.state.prevCity);
+           if(localStorage.getItem("CittaByFilter") != null)
+               city = localStorage.getItem("CittaByFilter");
+
+           const minPrice = "0";
+
+
+           console.log("inizializata richiesta per maxPrice");
+
+           let params = {
+               'city': 'Roma',
+               'minPrice': '',
+               'maxPrice': '',
+               'minArea': '',
+               'maxArea': '',
+               'type': '',
+               'E_class': ''
+           }
+
+
+           this.houseService.getHousesAleMaxPrice(
+               params,
+               callback.bind(this), callbackError.bind(this));
 
 
 
@@ -71,8 +109,13 @@ export default class InitialSearchPage extends React.Component{
         event.preventDefault();
    }
 
+   /*
+   fa il push a MAP
+    */
     getHouses(){
         let city = this.state.city;
+        //this.setState({prevCity: city});
+
         let callback = (results) => {
             let houseResp = results.data.response;
             this.setState({housesList: houseResp});
