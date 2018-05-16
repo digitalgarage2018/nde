@@ -2,7 +2,7 @@ import React from 'react';
 import HomePage from "./scenes/HomePage/HomePage";
 import SignUpPage from "./scenes/SignUpPage/SignUpPage";
 import InitialSearchPage from "./scenes/InitialSearchPage/InitialSearchPage";
-import MapContainer from "./scenes/MapPage/MapContainer";
+import MapContainer from "./scenes/MapPage/MapPage";
 import {Route,Router} from 'react-router-dom';
 
 

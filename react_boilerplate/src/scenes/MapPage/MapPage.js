@@ -7,8 +7,10 @@ import HouseService from "./../../services/HouseService";
 import InitialSearchPage from "../InitialSearchPage/InitialSearchPage";
 //import {LocationSearchInput} from './LocationSearchInput';
 import {Button} from "../../components/Button/Button";
+import Filter from "./components/FilterComponent"
+import CitySearchComponent from "./components/CitySearchComponent";
 
-export class MapContainer extends React.Component {
+export class MapPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -138,7 +140,13 @@ export class MapContainer extends React.Component {
                         </div>
                     </div>
                 </div>
+
                 <br/>
+
+                <CitySearchComponent/>
+
+                <Filter/>
+
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
 
                     {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
@@ -188,4 +196,4 @@ export class MapContainer extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: "AIzaSyAeZarnT-wYAMc6IZpwls-P6Cf90H_SVRk"
-})(MapContainer)
+})(MapPage)
