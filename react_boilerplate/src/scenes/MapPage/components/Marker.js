@@ -7,10 +7,15 @@ import HouseService from "../../../services/HouseService";
 const evtNames = ['click', 'mouseover'];
 
 export class Marker extends React.Component {
+    constructor(props) {
+        super(props);
 
-    getHouse(){
-        return this.props.house;
+        this.state = {
+            price:this.props.priceTag
+        };
+
     }
+
 
     componentWillUnmount() {
         if (this.marker) {

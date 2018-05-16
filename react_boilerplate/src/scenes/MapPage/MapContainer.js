@@ -16,6 +16,7 @@ export class MapContainer extends React.Component {
             activeMarker: {},
             selectedPlace: {},
             houseList: JSON.parse(localStorage.getItem("houseList")),
+            infoHouse: {},
             city: ''
         };
         this.houseService = new HouseService();
@@ -35,6 +36,7 @@ export class MapContainer extends React.Component {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
+
             showingInfoWindow: true
         });
 
@@ -74,6 +76,14 @@ export class MapContainer extends React.Component {
 
 
     };
+
+
+    // onInfoWindowClick() {
+    //     console.log("Ciao Windows clisckckackaskd");
+    //     this.props.history.push("/");
+    //
+    //     // this.props.history.push(variable);
+    // }
 
     render() {
         const style = {
@@ -122,21 +132,50 @@ export class MapContainer extends React.Component {
                     </div>
                 </div>
                 <br/>
-                <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick}>
+                <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
 
-                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} house={house} name={house.address} priceTag={house.price} position={{lat: house.latitude, lng: house.longitude}} />)}
+                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
+                                                               house={house}
+                                                               name={house.address}
+                                                               priceTag={house.price}
+                                                               position={{lat: house.latitude, lng: house.longitude}}
+                                                               area={house.area}
+                                                               eClass={house.e_class}
+                                                               type={house.type}
+
+                    />)}
                     {/*<Marker position={{lat: this.state.houseList[0].latitude, lng: this.state.houseList[0].longitude}}/>
                     <Marker/>
                     <Marker/>*/}
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
-                        onClose={this.onInfoWindowClose}>
-                        <div>
-                            <h1>{this.state.selectedPlace.name}</h1>
-                        </div>
+                        onClose={this.onInfoWindowClose}
+                        placeName={this.state.selectedPlace.name}
+                        placePrice={this.state.selectedPlace.priceTag}
+                        placeArea={this.state.selectedPlace.area}
+                        placeEclass={this.state.selectedPlace.eClass}
+                        placeType={this.state.selectedPlace.type}
+                       // placePrice={this.state.selectedPlace.price}
+
+                    >
+
+                        handler={  this.onInfoWindowClick }
+
+
+
                     </InfoWindow>
+
+
                 </Map>
+
+                {/*<button
+                    className = "btn btn-primary pull-right"
+                    onClick={ this.onInfoWindowClick }
+                >
+                    View details
+                </button>*/}
+
             </div>
         )
     }
