@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CityService from "../../../services/CityService";
+import {Button} from "../../../components/Button/Button";
 
 
 
@@ -41,6 +42,11 @@ export default class CitySearchComponent extends React.Component {
         console.log("Errore");
     }
 
+
+    search(){
+        console.log(this.props.filter.getState);
+    }
+
     render(){
         let listItems;
 
@@ -65,9 +71,10 @@ export default class CitySearchComponent extends React.Component {
                     )
                 }*/}
                 {listItems}
-
-
             </div>
+
+            <button onClick={this.search.bind(this)} />
+
         </div>)
     }
 

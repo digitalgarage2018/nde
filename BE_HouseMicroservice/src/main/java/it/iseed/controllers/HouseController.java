@@ -58,8 +58,18 @@ public class HouseController {
 	
 
 	@RequestMapping(value = "/findByFilterParametersAndCityName", method = RequestMethod.POST)
-	public ResponseEntity<JsonResponseBody> findByFilterParametersAndCityName(@RequestParam (value = "jwt") String jwt, @RequestBody Map<String, String> body){
-		Optional<List<House>> houses = houseService.findByFilterParametersAndCityName(body, jwt);
+	public ResponseEntity<JsonResponseBody> findByFilterParametersAndCityName(@RequestBody Map<String, String> body){
+		Optional<List<House>> houses = houseService.findByFilterParametersAndCityName(body, body.get("jwt"));
+		
+		/*
+		 * debug
+		 */
+		System.out.println("RICHIESTA IN INGRESSO ****************");
+		System.out.println("JWT:"+ body.get("jwt"));
+		for(String s : body.keySet()) {
+			System.out.println(s+": "+body.get(s));
+		}
+		System.out.println("****************************************");
 		
 		if(houses.isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), houses.get()));

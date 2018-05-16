@@ -87,6 +87,11 @@ export class MapPage extends React.Component {
     };
 
 
+    getHousesByMaxPrice(){
+        localStorage.setItem("maxPrice","130000");
+        this.props.history.push("/initialSearch");
+    }
+
     onInfoWindowClick () {
         console.log("Ciao Windows clisckckackaskd");
         this.props.history.push("/");
@@ -113,6 +118,8 @@ export class MapPage extends React.Component {
         That's a strange behaviour since I must be able to retrieve that from Axios and then create a Marker.
 
          {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} name={''} position={} />)}*/
+
+        let filter = <Filter/>;
 
         return (
 
@@ -143,9 +150,9 @@ export class MapPage extends React.Component {
 
                 <br/>
 
-                <CitySearchComponent/>
+                <CitySearchComponent filter={filter}/>
 
-                <Filter/>
+                <Filter handler={this.getHousesByMaxPrice.bind(this)}/>
 
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
 

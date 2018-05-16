@@ -53,7 +53,10 @@ export default class Filter extends React.Component {
           minValue={0}
           value={this.state.value}
           onChange={value => this.setState({ value })}
-          onChangeComplete={value => console.log(value)} />
+          onChangeComplete={value => console.log(value)}
+          ref="range"
+          id="range"
+          />
           
           <p>Mq</p>
           <InputRange
@@ -67,12 +70,16 @@ export default class Filter extends React.Component {
             maxValue={1000000}
             minValue={0}
             value={this.state.value3}
-            onChange={value3 => this.setState({ value3 })} />
+            onChange={value3 => this.setState({ value3 })}
+            ref="price"
+            id="price"
+          />
         </div>
 
-      <button className='button' onClick={this.prova.bind(this)}>PROVA</button> 
+      <button className='button' onClick={this.prova.bind(this)}>PROVA</button>
+      <button className='button' onClick={this.props.handler}>PROVAalessio</button>
 
-      <div style={{marginTop:"10px", paddingRight:"800px"}}>  
+          <div style={{marginTop:"10px", paddingRight:"800px"}}>
         <Select
           name="E_Class"
           value={this.state.classValue}
