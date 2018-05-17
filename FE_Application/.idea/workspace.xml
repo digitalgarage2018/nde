@@ -17,8 +17,8 @@
       <file leaf-file-name="Map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+            <state relative-caret-position="306">
+              <caret line="45" column="27" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="27" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -26,20 +26,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
+      <file leaf-file-name="InitialSearchPage.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="202" column="144" selection-start-line="202" selection-start-column="144" selection-end-line="202" selection-end-column="144" />
+            <state relative-caret-position="459">
+              <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HouseService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/houseService/HouseService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="79" column="49" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="49" />
+            <state relative-caret-position="-240">
+              <caret line="6" column="61" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3298">
+              <caret line="202" column="66" lean-forward="true" selection-start-line="202" selection-start-column="66" selection-end-line="202" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilterComponent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/FilterComponent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,11 +94,12 @@
         <option value="$PROJECT_DIR$/src/components/Navbar/Header.js" />
         <option value="$PROJECT_DIR$/src/scenes/SignUpPage/SignUpPage.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/FilterComponent.js" />
         <option value="$PROJECT_DIR$/src/services/houseService/HouseService.js" />
-        <option value="$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js" />
-        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/Map.js" />
         <option value="$PROJECT_DIR$/src/scenes/MapPage/MapPage.js" />
+        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/Map.js" />
+        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/FilterComponent.js" />
+        <option value="$PROJECT_DIR$/src/services/cityService/CityService.js" />
+        <option value="$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js" />
       </list>
     </option>
   </component>
@@ -94,7 +119,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -131,28 +156,6 @@
               <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
               <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="InitialSearchPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="MapPage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="MapPage" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -168,20 +171,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="houseService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="loginService" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="signUpService" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -232,15 +221,15 @@
       <updated>1526299475249</updated>
       <workItem from="1526299476823" duration="22444000" />
       <workItem from="1526371334602" duration="880000" />
-      <workItem from="1526553117511" duration="16158000" />
+      <workItem from="1526553117511" duration="18943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42608000" />
+    <option name="totallyTimeSpent" value="45393000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="23" width="1294" height="704" extended-state="7" />
+    <frame x="-7" y="23" width="1294" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49856734" visible="true" weight="0.291965" />
@@ -488,13 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/cityService/CityService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Navbar/Navbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -604,16 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/FilterComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="57" column="7" lean-forward="true" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/daButtare/HouseService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-444">
@@ -625,16 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="967">
           <caret line="179" column="63" selection-start-line="179" selection-start-column="44" selection-end-line="179" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -661,10 +623,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/FilterComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+        <state relative-caret-position="306">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="27" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -673,15 +645,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="202" column="144" selection-start-line="202" selection-start-column="144" selection-end-line="202" selection-end-column="144" />
+        <state relative-caret-position="3298">
+          <caret line="202" column="66" lean-forward="true" selection-start-line="202" selection-start-column="66" selection-end-line="202" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/houseService/HouseService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="79" column="49" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="49" />
+        <state relative-caret-position="-240">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/cityService/CityService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

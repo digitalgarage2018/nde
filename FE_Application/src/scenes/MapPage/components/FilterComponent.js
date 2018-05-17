@@ -15,7 +15,7 @@ export default class Filter extends React.Component {
       utilizzo i local Storage per mantenere i valori precedenti
        */
       this.state = {
-        range: 5,
+        range: localStorage.getItem("mapSearchRange")||5,
         price: {
             min: localStorage.getItem("filterMinPrice")||30000,
             max: localStorage.getItem("filterMaxPrice")||400000,
@@ -58,6 +58,10 @@ export default class Filter extends React.Component {
         this.props.handler();
     }
 
+    handleDistanceSlider(){
+        localStorage.setItem("mapSearchRange",this.state.range.toString());
+    }
+
     render() { 
       
     return (
@@ -72,7 +76,7 @@ export default class Filter extends React.Component {
           minValue={0}
           value={this.state.range}
           onChange={range => this.setState({ range })}
-          onChangeComplete={range => console.log(range)}
+          onChangeComplete={this.handleDistanceSlider.bind(this)}
           />
           
           <p>Mq</p>

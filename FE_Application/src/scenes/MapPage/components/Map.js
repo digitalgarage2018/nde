@@ -111,11 +111,14 @@ export class Map extends React.Component {
      */
     newCenter(e) {
         this.setState({
-            currentLocation: {lat: e.latLng.lat(), lng: e.latLng.lng()}
+            currentLocation: {lat: e.latLng.lat().toFixed(6), lng: e.latLng.lng().toFixed(6)}
         });
 
         //tipologia di richiesta
         localStorage.setItem("requestType",'searchByMap');
+        localStorage.setItem("mapSearchLat",this.state.currentLocation.lat);
+        localStorage.setItem("mapSearchLng",this.state.currentLocation.lng);
+
         this.props.handler();
     }
 

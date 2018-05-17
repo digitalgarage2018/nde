@@ -111,10 +111,12 @@ export default class InitialSearchPage extends React.Component{
 
            let params = {
                'jwt': localStorage.getItem("token"),
-               'range': 4,
-               'latitude': 45,
-               'longitude': 10
+               'range': localStorage.getItem("mapSearchRange"),
+               'latitude': localStorage.getItem("mapSearchLat"),
+               'longitude': localStorage.getItem("mapSearchLng")
            }
+           localStorage.removeItem("mapSearchLat");
+           localStorage.removeItem("mapSearchLng");
 
            this.houseService.getHousesByCoords(params, callback.bind(this), callbackError.bind(this));
 
