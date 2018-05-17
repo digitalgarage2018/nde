@@ -41,11 +41,13 @@ export class Map extends React.Component {
                     lng: this.props.houseList[0].city.longitude
                 }
             }
+            localStorage.setItem("currentLat",this.state.currentLocation.lat.toString());
+            localStorage.setItem("currentLng",this.state.currentLocation.lng.toString());
         } else {
             this.state = {
                 currentLocation: {
-                    lat: 0,
-                    lng: 0
+                    lat: localStorage.getItem("currentLat")||0,
+                    lng: localStorage.getItem("currentLng")||0
                 }
             }
         }

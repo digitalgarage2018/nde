@@ -81,14 +81,15 @@ export class MapPage extends React.Component {
             this.props.history.push("/");
         };
         console.log("inizializazione richiesta");
-        this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));*/
+        this.houseService.getHousesByCityName(city, callback.bind(this), callbackError.bind(this));*/
 
 
 
         /*
         PEZZA delle 2 di notte
          */
-        localStorage.setItem("cittaByMap",this.state.city);
+        localStorage.setItem("currentCity",this.state.city);
+        localStorage.setItem("requestType","searchByCityName");
         this.props.history.push("/initialSearch");
 
 

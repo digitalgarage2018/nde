@@ -6,11 +6,9 @@ export default class InitialSearchPage extends React.Component{
    constructor(props){ 
       super(props);
 
-
-
         this.state = {
           city:'',
-          prevCity:'Milano',
+          prevCity:'',
           housesList:[{houses: Array().fill(null)}]
         }
 
@@ -19,14 +17,12 @@ export default class InitialSearchPage extends React.Component{
         /*
         pezza, chiamato da Map page per cambiare citta
          */
-       if(localStorage.getItem("cittaByMap")!= null ){
+       if(localStorage.getItem("requestType") === 'searchByCityName'){
+           localStorage.removeItem("requestType");
 
-           console.log("ALESSIO: richiesta cittaByMap");
+           console.log("ALESSIO: richiesta searchByCityName");
 
-           let city = localStorage.getItem("cittaByMap");
-           //this.setState({prevCity: city});
-           localStorage.removeItem("cittaByMap");
-
+           let city = localStorage.getItem("currentCity");
 
            let callback = (results) => {
                let houseResp = results.data.response;
@@ -56,10 +52,6 @@ export default class InitialSearchPage extends React.Component{
 
            console.log("ALESSIO: richiesta searchByFilter");
 
-           console.log("tentativo di ricerca per maxPrice")
-           let maxPrice = localStorage.getItem("maxPrice");
-           localStorage.removeItem("maxPrice");
-
            let callback = (results) => {
                let houseResp = results.data.response;
                this.setState({housesList: houseResp});
@@ -74,19 +66,16 @@ export default class InitialSearchPage extends React.Component{
                this.props.history.push("/");
            };
 
-           let city = this.state.prevCity;
-           console.log("il valore di prev city è:"+this.state.prevCity);
-           if(localStorage.getItem("CittaByFilter") != null)
-               city = localStorage.getItem("CittaByFilter");
+           //let city = this.state.prevCity;
+           //console.log("il valore di prev city è:"+this.state.prevCity);
+           //if(localStorage.getItem("CittaByFilter") != null)
+           //    city = localStorage.getItem("CittaByFilter");
 
-           const minPrice = "0";
-
-
-           console.log("inizializata richiesta per maxPrice");
+           console.log("inizializzazione richiesta, prevCity:"+this.state.prevCity+", city:"+this.state.city);
 
            let params = {
-               'city': localStorage.getItem("CittaByFilter")||this.state.prevCity,
-               'minPrice': localStorage.getItem("filterMinPrice")||'51',
+               'city': localStorage.getItem('currentCity')||'Milano',
+               'minPrice': localStorage.getItem("filterMinPrice")||'',
                'maxPrice': localStorage.getItem("filterMaxPrice")||'',
                'minArea': localStorage.getItem("filterMinArea")||'',
                'maxArea': localStorage.getItem("filterMaxArea")||'',
@@ -119,9 +108,10 @@ export default class InitialSearchPage extends React.Component{
    /*
    fa il push a MAP
     */
-    getHouses(){
+    getHousesByCityName(){
         let city = this.state.city;
-        //this.setState({prevCity: city});
+        this.setState({prevCity: city});
+        localStorage.setItem("currentCity",this.state.city);
 
         let callback = (results) => {
             let houseResp = results.data.response;
@@ -157,7 +147,7 @@ export default class InitialSearchPage extends React.Component{
                           </div>
                           <button 
                               className = "btn btn-primary pull-right"
-                              onClick={this.getHouses.bind(this)}>
+                              onClick={this.getHousesByCityName.bind(this)}>
                               Cerca
                           </button>
                           {this.state.houses}
