@@ -34,7 +34,16 @@ export class Map extends React.Component {
 
         const {latitude, longitude} = this.props.initialCenter;
 
-        if (this.props.houseList.length > 0) {
+        if(localStorage.getItem("requestType") === "searchByMap") {
+            localStorage.removeItem("requestType");
+            this.state = {
+                currentLocation: {
+                    lat: localStorage.getItem("currentLat"),
+                    lng: localStorage.getItem("currentLng"),
+                }
+            }
+        }
+        else if (this.props.houseList.length > 0) {
             this.state = {
                 currentLocation: {
                     lat: this.props.houseList[0].city.latitude,
@@ -78,6 +87,8 @@ export class Map extends React.Component {
             this.loadMap();
         }
         if (prevState.currentLocation !== this.state.currentLocation) {
+            localStorage.setItem("currentLat", this.state.currentLocation.lat);
+            localStorage.setItem("currentLng", this.state.currentLocation.lng);
             this.recenterMap();
         }
     }
@@ -101,7 +112,11 @@ export class Map extends React.Component {
     newCenter(e) {
         this.setState({
             currentLocation: {lat: e.latLng.lat(), lng: e.latLng.lng()}
-        })
+        });
+
+        //tipologia di richiesta
+        localStorage.setItem("requestType",'searchByMap');
+        this.props.handler();
     }
 
     loadMap() {

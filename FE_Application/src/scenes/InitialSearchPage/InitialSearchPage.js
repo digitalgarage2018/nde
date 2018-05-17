@@ -88,7 +88,35 @@ export default class InitialSearchPage extends React.Component{
                params,
                callback.bind(this), callbackError.bind(this));
 
+       }
+       else if(localStorage.getItem("requestType") === 'searchByMap') {
+           localStorage.removeItem("requestType");
 
+           console.log("GIAN: richiesta searchByFilter");
+
+           let callback = (results) => {
+               let houseResp = results.data.response;
+               this.setState({housesList: houseResp});
+               console.log(this.state.housesList);
+               //forse va prima ripulito, forse no
+               localStorage.setItem("houseList", JSON.stringify(houseResp));
+               this.props.history.push("/map");
+           };
+
+           //GIAN: custom message?
+           let callbackError = (error) => {
+               localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
+               this.props.history.push("/");
+           };
+
+           let params = {
+               'jwt': localStorage.getItem("token"),
+               'range': 4,
+               'latitude': 45,
+               'longitude': 10
+           }
+
+           this.houseService.getHousesByCoords(params, callback.bind(this), callbackError.bind(this));
 
        }
 

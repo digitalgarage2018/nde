@@ -29,6 +29,41 @@ export default class HouseService{
   }
 
 
+
+  /*
+  ByGian
+   */
+    getHousesByCoords(params, callback, errorCallback){
+
+
+        const url = "http://localhost:8071/house/findByFilterParametersAndMapCoordinates";
+
+        const data=JSON.stringify({
+            'jwt' :localStorage.getItem("token"),
+            'range': params.range,
+            'latitude': params.latitude,
+            'longitude': params.longitude
+        });
+
+        //debug
+        console.log("Gianmarco: pacchetto dati:"+data);
+
+        const config={
+            headers:{'Content-Type': 'application/json; charset=UTF-8'
+            }
+        };
+
+        axios.post("http://localhost:8071/house/findByFilterParametersAndMapCoordinates", data, config)
+            .then(function(result){
+                console.log(result);
+                callback(result);
+            })
+            .catch(function (error) {
+                console.log(error);
+                //errorCallback(error);
+            })
+    }
+
     //per ora cablato con city Milano
     getHousesAleMaxPrice(params, callback, errorCallback){
 

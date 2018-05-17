@@ -106,6 +106,13 @@ export class MapPage extends React.Component {
         this.props.history.push("/initialSearch");
     }
 
+    /*
+    By Gian
+     */
+    searchByMap() {
+        this.props.history.push("/initialSearch");
+    }
+
 
     /*
     funzione di prova da BUTTARE VIA!
@@ -193,7 +200,7 @@ export class MapPage extends React.Component {
 
                 <Filter handler={this.searchByFilter.bind(this)}/>
 
-                <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
+                <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} handler={this.searchByMap.bind(this)} >
 
                     {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
                                                                house={house}
