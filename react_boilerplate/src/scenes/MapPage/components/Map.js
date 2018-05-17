@@ -11,6 +11,7 @@ const evtNames = [
     'recenter',
     'bounds_changed',
     'center_changed',
+    'dblclick',
     'dragstart',
     'heading_change',
     'idle',

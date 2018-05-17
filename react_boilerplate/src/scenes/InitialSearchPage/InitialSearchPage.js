@@ -21,6 +21,8 @@ export default class InitialSearchPage extends React.Component{
          */
        if(localStorage.getItem("cittaByMap")!= null ){
 
+           console.log("ALESSIO: richiesta cittaByMap");
+
            let city = localStorage.getItem("cittaByMap");
            //this.setState({prevCity: city});
            localStorage.removeItem("cittaByMap");
@@ -46,8 +48,13 @@ export default class InitialSearchPage extends React.Component{
 
        /*
        chiamato da MAP, per ricercare tramite filtri di ricerca
+
+       CONDIZIONE: tipo richiesta, poi la si cancella subito dal local storage
         */
-       else if(localStorage.getItem("maxPrice")!= null){
+       else if(localStorage.getItem("requestType") === 'searchByFilter'){
+           localStorage.removeItem("requestType");
+
+           console.log("ALESSIO: richiesta searchByFilter");
 
            console.log("tentativo di ricerca per maxPrice")
            let maxPrice = localStorage.getItem("maxPrice");
@@ -78,13 +85,13 @@ export default class InitialSearchPage extends React.Component{
            console.log("inizializata richiesta per maxPrice");
 
            let params = {
-               'city': 'Roma',
-               'minPrice': '',
-               'maxPrice': '',
-               'minArea': '',
-               'maxArea': '',
-               'type': '',
-               'E_class': ''
+               'city': localStorage.getItem("CittaByFilter")||this.state.prevCity,
+               'minPrice': localStorage.getItem("filterMinPrice")||'51',
+               'maxPrice': localStorage.getItem("filterMaxPrice")||'',
+               'minArea': localStorage.getItem("filterMinArea")||'',
+               'maxArea': localStorage.getItem("filterMaxArea")||'',
+               'type': localStorage.getItem("filterType")||'',
+               'E_class': localStorage.getItem("filterEclass")||''
            }
 
 

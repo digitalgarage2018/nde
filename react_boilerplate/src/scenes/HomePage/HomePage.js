@@ -28,6 +28,10 @@ export default class Home extends React.Component{
     }
 
     loginSuccess(dataResult){
+
+       //flush del local storage
+        localStorage.clear();
+
         this.setState({
                        showSuccess:true, 
                        successMessage:"Complimenti per il login, il tuo token è: " + dataResult,

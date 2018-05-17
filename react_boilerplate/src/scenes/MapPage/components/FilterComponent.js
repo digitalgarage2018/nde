@@ -10,19 +10,22 @@ export default class Filter extends React.Component {
 
     constructor(props) {
       super(props);
-  
+
+      /*
+      utilizzo i local Storage per mantenere i valori precedenti
+       */
       this.state = {
-        value: 5,
-        value2: {
-            min: 45,
-            max: 100,
+        range: 5,
+        price: {
+            min: localStorage.getItem("filterMinPrice")||30000,
+            max: localStorage.getItem("filterMaxPrice")||400000,
           },
-        value3: {
-            min: 30000,
-            max: 400000,
+        area: {
+            min: localStorage.getItem("filterMinArea")||45,
+            max: localStorage.getItem("filterMaxArea")||100,
           },
-        typeValue: '',
-        classValue: '',
+        type: localStorage.getItem("filterType")||'',
+        E_class: localStorage.getItem("filterEclass")||'',
       };
     }
 
@@ -31,12 +34,28 @@ export default class Filter extends React.Component {
     }
 
     handleTypeChange = (selectedOption) => {
-      this.setState({ typeValue: selectedOption });
+      this.setState({ type: selectedOption.label });
       console.log(`Selected: ${selectedOption.label}`);
     }
     handleClassChange = (selectedOption) => {
-      this.setState({ classValue: selectedOption });
+      this.setState({ E_class: selectedOption.label });
       console.log(`Selected: ${selectedOption.label}`);
+    }
+
+    handleOnClickButton = () => {
+        localStorage.setItem("filterRange",this.state.range.toString());
+        localStorage.setItem("filterMaxPrice",this.state.price.max.toString());
+        localStorage.setItem("filterMinPrice",this.state.price.min.toString());
+        localStorage.setItem("filterMaxArea",this.state.area.max.toString());
+        localStorage.setItem("filterMinArea",this.state.area.min.toString());
+        localStorage.setItem("filterType",this.state.type.toString());
+        localStorage.setItem("filterEclass",this.state.E_class.toString());
+
+        //tipologia di richiesta
+        localStorage.setItem("requestType",'searchByFilter');
+
+        //chiamata a handler di MapPage, eseguirà l'indirizzamento
+        this.props.handler();
     }
 
     render() { 
@@ -51,38 +70,33 @@ export default class Filter extends React.Component {
           <InputRange
           maxValue={20}
           minValue={0}
-          value={this.state.value}
-          onChange={value => this.setState({ value })}
-          onChangeComplete={value => console.log(value)}
-          ref="range"
-          id="range"
+          value={this.state.range}
+          onChange={range => this.setState({ range })}
+          onChangeComplete={range => console.log(range)}
           />
           
           <p>Mq</p>
           <InputRange
             maxValue={500}
             minValue={0}
-            value={this.state.value2}
-            onChange={value2 => this.setState({ value2 })} />
+            value={this.state.area}
+            onChange={area => this.setState({ area })} />
           
           <p>Prezzo</p>
           <InputRange
             maxValue={1000000}
             minValue={0}
-            value={this.state.value3}
-            onChange={value3 => this.setState({ value3 })}
-            ref="price"
-            id="price"
+            value={this.state.price}
+            onChange={price => this.setState({ price })}
           />
         </div>
 
-      <button className='button' onClick={this.prova.bind(this)}>PROVA</button>
-      <button className='button' onClick={this.props.handler}>PROVAalessio</button>
+
 
           <div style={{marginTop:"10px", paddingRight:"800px"}}>
         <Select
           name="E_Class"
-          value={this.state.classValue}
+          value={this.state.E_class}
           onChange={this.handleClassChange}
           options={[
             { value: 'A', label: 'A' },
@@ -99,7 +113,7 @@ export default class Filter extends React.Component {
       <div style={{marginTop:"10px", paddingRight:"800px", minHeight:"20vh"}}>  
         <Select
           name="Type"
-          value={this.state.typeValue}
+          value={this.state.type}
           onChange={this.handleTypeChange}
           options={[
             { value: 'Bilocale', label: 'Bilocale' },
@@ -110,6 +124,11 @@ export default class Filter extends React.Component {
           ]}
           />
       </div>
+
+
+          <button className='button' onClick={this.handleOnClickButton}>CERCA</button>
+
+
     </div>
       
         

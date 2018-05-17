@@ -52,6 +52,9 @@ export default class HouseService{
             'E_class': params.E_class
         });
 
+        //debug
+        console.log("ALESSIO: pacchetto dati:"+data);
+
         const config={
             headers:{'Content-Type': 'application/json; charset=UTF-8'
             }

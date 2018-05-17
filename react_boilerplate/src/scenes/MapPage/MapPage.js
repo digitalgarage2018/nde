@@ -20,7 +20,15 @@ export class MapPage extends React.Component {
             selectedPlace: {},
             houseList: JSON.parse(localStorage.getItem("houseList")),
             infoHouse: {},
-            city: ''
+
+            city: '',
+            minPrice: '',
+            maxPrice: '',
+            minArea: '',
+            maxArea: '',
+            type: '',
+            E_class: ''
+
         };
         this.houseService = new HouseService();
     }
@@ -86,7 +94,21 @@ export class MapPage extends React.Component {
 
     };
 
+    /*
+    ALESSIO:
+    handler che verrà passato al componente filtro.
+    Avrà i local storage settati adeguatamente, ed avverrà
+    un indirizzamento
+     */
+    searchByFilter(){
+       // console.log("ALESSIO: search by filter");
+        this.props.history.push("/initialSearch");
+    }
 
+
+    /*
+    funzione di prova da BUTTARE VIA!
+     */
     getHousesByMaxPrice(){
         localStorage.setItem("maxPrice","130000");
         this.props.history.push("/initialSearch");
@@ -98,6 +120,22 @@ export class MapPage extends React.Component {
 
         // this.props.history.push(variable);
     };
+
+
+    /*
+    callback per il filtro
+     */
+    setFilterParams(params){
+        this.setState({
+            city: params.city,
+            minPrice: params.minPrice,
+            maxPrice: params.maxPrice,
+            minArea: params.minArea,
+            maxArea: params.maxArea,
+            type: params.type,
+            E_class: params.E_class
+        })
+    }
 
     render() {
         const style = {
@@ -119,7 +157,7 @@ export class MapPage extends React.Component {
 
          {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} name={''} position={} />)}*/
 
-        let filter = <Filter/>;
+        let filter = <Filter handlerFather={this.setFilterParams.bind(this)}/>;
 
         return (
 
@@ -152,7 +190,7 @@ export class MapPage extends React.Component {
 
                 <CitySearchComponent filter={filter}/>
 
-                <Filter handler={this.getHousesByMaxPrice.bind(this)}/>
+                <Filter handler={this.searchByFilter.bind(this)}/>
 
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} >
 
