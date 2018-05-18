@@ -55,14 +55,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="117">
               <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AboutUs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scenes/AboutUs/AboutUs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -79,14 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppRouter.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AppRouter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="34" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -139,9 +145,10 @@
         <option value="$PROJECT_DIR$/src/scenes/HomePage/HomePage.js" />
         <option value="$PROJECT_DIR$/src/scenes/SpecPage/CaratteristicHouse.js" />
         <option value="$PROJECT_DIR$/src/scenes/SpecPage/SpecPage.js" />
-        <option value="$PROJECT_DIR$/src/AppRouter.js" />
         <option value="$PROJECT_DIR$/src/components/Navbar/Header.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/scenes/AboutUs/AboutUs.js" />
+        <option value="$PROJECT_DIR$/src/AppRouter.js" />
       </list>
     </option>
   </component>
@@ -228,6 +235,13 @@
               <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="AboutUs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FE_Application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FE_Application" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="HomePage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -306,11 +320,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\AboutUs\resources" />
+      <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\AboutUs" />
       <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\SpecPage" />
       <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\SpecPage\resources" />
       <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\Profile" />
-      <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\components\Navbar\old" />
-      <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\components\Footer\old" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\goku2\Documents\GitHub\DigitalGarage\First\Third-Project\Principale\nde\FE_Application\src\scenes\Profile\resources" />
@@ -346,12 +360,12 @@
       <workItem from="1526371334602" duration="880000" />
       <workItem from="1526553117511" duration="18943000" />
       <workItem from="1526633900082" duration="670000" />
-      <workItem from="1526645548213" duration="4612000" />
+      <workItem from="1526645548213" duration="5329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51119000" />
+    <option name="totallyTimeSpent" value="51836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1294" height="704" extended-state="6" />
@@ -384,16 +398,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-319">
-          <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapContainer.js" />
     <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -673,16 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/SpecPage/SpecPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -690,6 +684,23 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/AboutUs/AboutUs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -703,13 +714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/src/AppRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
         </state>
       </provider>
     </entry>
