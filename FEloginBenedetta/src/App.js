@@ -6,6 +6,7 @@ import Profile from "./components/profile/profile";
 import Map from "./components/map/map";
 import SignUp from "./components/signUp/signUp";
 import TableSort from "./components/tableSort/tablesort";
+import Slider from "./components/filterComponent/filterComponent";
 
 class App extends Component {
   constructor(props){
@@ -24,6 +25,7 @@ class App extends Component {
                 <Route exact path='/Map' component={Map}/>
                 <Route exact path='/SignUp' component={SignUp}/>
                 <Route exact path='/TableSort' component={TableSort}/>
+                <Route exact path='/Slider' component={Slider}/>
             </Switch>
         </MainTemplate>
       </BrowserRouter>

@@ -1,6 +1,7 @@
 import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import {Label} from 'react-bootstrap';
+import ProfileImm from './avatar.png';
 
 const products = [];
 function addProducts(quantity) {
@@ -24,26 +25,30 @@ export default class Profile extends React.Component{
    render(){ 
 
       return( 
-      <div style={{marginTop:"100px", minHeight:"70vh", padding:"20px"}}>
+     
+         
+        <div style={{marginTop:"20px", minHeight:"70vh", padding:"20px"}}>    
           <div>
-          <h4>
+          <img src={ProfileImm} style={{float:'left', marginLeft: '20px', marginRight:'20px'}}/>
+          <h5>
              Username: <Label> my username </Label>
-          </h4>
-          <h4>
+          </h5>
+          <h5>
             Email: <Label> my email </Label>
-          </h4>
-          <h4>
+          </h5>
+          <h5>
              My wallet: <Label> 100000 </Label>
-          </h4> 
+          </h5> 
         </div>
 
-        <p style={{color:'blue'}}>My houses:</p> 
+        <div style={{padding:'20px'}}>
         <BootstrapTable data={ products }>
             <TableHeaderColumn dataField='id' width='50' isKey={ true }>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='address' width='150'>Address</TableHeaderColumn>
             <TableHeaderColumn dataField='type' width='150'>Type</TableHeaderColumn>
             <TableHeaderColumn dataField='price' width='150'>Price</TableHeaderColumn>
         </BootstrapTable>
+        </div>
         </div>
         ); 
    } 

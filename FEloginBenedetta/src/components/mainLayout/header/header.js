@@ -29,16 +29,19 @@ export default class Header extends React.Component{
                <div className = "navbar-nav">
                  <a className="nav-item nav-link" href="/TableSort">Table</a>
                </div>
-              <div className="navbar-nav">
+               <div className = "navbar-nav">
+                 <a className="nav-item nav-link" href="/slider">slider</a>
+               </div>
+               <div className="navbar-nav">
                  <a className="nav-item nav-link" href="/Profile">
                     Profile
                  </a>
-              </div>
-              <div className="navbar-nav">
+               </div>
+               <div className="navbar-nav">
                  <a className="nav-item nav-link" href="/Map">
                     Map
                  </a>
-              </div>
+               </div>
               
            </div>
         </nav>
