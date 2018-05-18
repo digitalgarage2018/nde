@@ -1,8 +1,8 @@
 import React from "react";
+import LoginService from "./../../../services/LoginService";
 
-import LoginService from "./loginService";
 
-export default class Home extends React.Component{ 
+export default class LoginComponent extends React.Component{ 
    constructor(props){ 
       super(props);
         this.state = {
@@ -11,7 +11,7 @@ export default class Home extends React.Component{
           showSuccess:false,
           showError:false,
           errorMessage:"",
-          successMessage:""
+          successMessage:"",
         }
     this.loginService = new LoginService();
     }
@@ -34,7 +34,10 @@ export default class Home extends React.Component{
                        successMessage:"Complimenti per il login, il tuo token è: " + dataResult,
                        showError:false,
                        errorMessage:""});
-     }
+            localStorage.setItem("token", dataResult);
+            this.props.history.push("/initialSearch");
+        }
+
      loginError(){
         this.setState({
                        showError:true, 
@@ -42,6 +45,7 @@ export default class Home extends React.Component{
                        showSuccess:false,
                        successMessage:""});
      }
+
     login(event){
         this.loginService.login(this.state.username, 
             this.state.password, 
@@ -88,17 +92,17 @@ export default class Home extends React.Component{
      }
 
    render(){ 
-    var successMessage = this.getSuccessMessage();
+    let successMessage = this.getSuccessMessage();
  
-    var errorMessage = this.getErrorMessage();
+    let errorMessage = this.getErrorMessage();
 
-      return( 
-        <div style={{marginTop:"100px", minHeight:"70vh"}}>
+    return( 
+        <div style={{minHeight:"30vh"}}>
             <div className = "container">
                 <div className = "row">
-                    <div className = "col-6 mr-auto ml-auto">
+                    <div className = "col-6 mr-auto ml-auto" style={{paddingRight:'400px',paddingLeft:'400px'}}>
                        <form onSubmit={this.onSubmit.bind(this)}>
-                          <div className = "form-group">
+                          <div className = "form-group" >
                              <input 
                                  type="text"
                                  className = "form-control"
@@ -106,7 +110,7 @@ export default class Home extends React.Component{
                                  value = {this.state.username || ''}
                                  onChange = {this.changeUsername.bind(this)}/>
                           </div>
-                          <div className = "form-group">
+                          <div className = "form-group" >
                              <input 
                                 type="password"
                                 className = "form-control"
@@ -117,16 +121,18 @@ export default class Home extends React.Component{
                           <button 
                               type="submit"
                               className = "btn btn-primary pull-right"
-                              onClick={this.login.bind(this)}>
+                              onClick={this.login.bind(this)}
+                              
+                             >
                               Log In
                           </button>
-                          {successMessage}
-                          {errorMessage}
+                          {localStorage.getItem("loginMessage")}
+                          {localStorage.removeItem("loginMessage")}
                       </form>
                    </div>
-              </div>
-         </div>
-     </div>
+                </div>
+            </div>
+        </div>
       ); 
    } 
 }
