@@ -5,12 +5,14 @@ import Footer from "./components/Footer/Footer";
 
 
 class App extends Component {
+
+
     render() {
         return (
             <div>
                 <Header/>
                 <AppRouter/>
-                <Footer/>
+                <Footer />
             </div>
 
         );
