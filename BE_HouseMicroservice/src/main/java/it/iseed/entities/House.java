@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,6 +20,7 @@ public class House {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@NotNull
 	@JoinColumn(name = "city_fk")
 	private City city;
 	
