@@ -57,7 +57,7 @@ public class User implements Serializable{
 	
 	@Transient//consente di non persistere l'attributo nel db
 	//è wishlist a tenere il riferimento ad user nella sua tabella
-//	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="user")
 	private Wishlist wishlist;
 	
 	

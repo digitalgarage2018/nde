@@ -29,5 +29,8 @@ public interface WishlistService {
 
 	//jwt contiene anche l'id utente
 	public boolean removeWish(String jwt, int idHouse);
+	
+	//jwt contiene anche l'id utente
+	public boolean createWishlist(String jwt, String name);
 
 }

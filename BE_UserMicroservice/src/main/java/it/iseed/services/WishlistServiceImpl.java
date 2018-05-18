@@ -18,7 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.iseed.daos.UserDao;
 import it.iseed.daos.WishlistDao;
+import it.iseed.entities.User;
 import it.iseed.entities.Wishlist;
 
 
@@ -30,9 +32,11 @@ public class WishlistServiceImpl implements WishlistService {
 	private static final Logger log = LoggerFactory.getLogger(WishlistServiceImpl.class);
 
 
-//	@Autowired
-//	WishlistDao wishlistDao;
-	WishlistDao wishlistDao = null;
+	@Autowired
+	WishlistDao wishlistDao;
+	
+	@Autowired
+	UserDao userDao;
 
 	@Autowired
 	SessionService sessionService;
@@ -111,6 +115,38 @@ public class WishlistServiceImpl implements WishlistService {
 
 			//subject == idUser
 			result = wishlistDao.removeHouseByIdUser( (int)map.get().get("subject"), idHouse);
+		}
+		else {
+			//validazione sessione fallita: il richiedente non è in possesso del token jwt
+			result = false;
+		}
+
+		return result;
+	}
+	
+	
+	@Override
+	public boolean createWishlist(String jwt, String name) {
+
+		boolean result;
+
+		//tento validazione sessione
+		Optional< Map<String, Object> > map = sessionService.verifyJwtAndGetData(jwt);
+		
+		///log.info("CIAO ALESSIO, il tuo id:"+map.get().get("subject"));
+
+		if( map.isPresent() ) {
+			//sessione valida
+			log.info("Debug di jwt:"+jwt);//debug
+			
+			//recupero user by id, subject == idUser
+			Optional<User> user = userDao.getUserById(Integer.parseInt( (String)map.get().get("subject") ) );
+
+			if( user.isPresent() )
+				result = wishlistDao.createWishlist(name, user.get());
+			else
+				result = false;
+
 		}
 		else {
 			//validazione sessione fallita: il richiedente non è in possesso del token jwt
