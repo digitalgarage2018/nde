@@ -10,13 +10,24 @@ export default class InitialSearchPage extends React.Component{
 
         this.state = {
           city:'',
+          prevCity:'Milano',
           housesList:[{houses: Array().fill(null)}]
         }
+
     this.houseService = new HouseService();
 
-       if(localStorage.getItem("cittaByMap")!= null){
+        /*
+        pezza, chiamato da Map page per cambiare citta
+         */
+       if(localStorage.getItem("cittaByMap")!= null ){
+
+           console.log("ALESSIO: richiesta cittaByMap");
+
            let city = localStorage.getItem("cittaByMap");
+           //this.setState({prevCity: city});
            localStorage.removeItem("cittaByMap");
+
+
            let callback = (results) => {
                let houseResp = results.data.response;
                this.setState({housesList: houseResp});
@@ -24,12 +35,72 @@ export default class InitialSearchPage extends React.Component{
                localStorage.setItem("houseList", JSON.stringify(houseResp));
                this.props.history.push("/map");
            };
+
            let callbackError = (error) => {
                localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
                this.props.history.push("/");
            };
-           console.log("inizializazione richiesta");
+
+           console.log("inizializazione richiesta effettuata");
+
            this.houseService.getHouses(city, callback.bind(this), callbackError.bind(this));
+       }
+
+       /*
+       chiamato da MAP, per ricercare tramite filtri di ricerca
+
+       CONDIZIONE: tipo richiesta, poi la si cancella subito dal local storage
+        */
+       else if(localStorage.getItem("requestType") === 'searchByFilter'){
+           localStorage.removeItem("requestType");
+
+           console.log("ALESSIO: richiesta searchByFilter");
+
+           console.log("tentativo di ricerca per maxPrice")
+           let maxPrice = localStorage.getItem("maxPrice");
+           localStorage.removeItem("maxPrice");
+
+           let callback = (results) => {
+               let houseResp = results.data.response;
+               this.setState({housesList: houseResp});
+               console.log(this.state.housesList);
+               //forse va prima ripulito, forse no
+               localStorage.setItem("houseList", JSON.stringify(houseResp));
+               this.props.history.push("/map");
+           };
+
+           let callbackError = (error) => {
+               localStorage.setItem("loginMessage", "Non sei loggato. Loggati!");
+               this.props.history.push("/");
+           };
+
+           let city = this.state.prevCity;
+           console.log("il valore di prev city è:"+this.state.prevCity);
+           if(localStorage.getItem("CittaByFilter") != null)
+               city = localStorage.getItem("CittaByFilter");
+
+           const minPrice = "0";
+
+
+           console.log("inizializata richiesta per maxPrice");
+
+           let params = {
+               'city': localStorage.getItem("CittaByFilter")||this.state.prevCity,
+               'minPrice': localStorage.getItem("filterMinPrice")||'51',
+               'maxPrice': localStorage.getItem("filterMaxPrice")||'',
+               'minArea': localStorage.getItem("filterMinArea")||'',
+               'maxArea': localStorage.getItem("filterMaxArea")||'',
+               'type': localStorage.getItem("filterType")||'',
+               'E_class': localStorage.getItem("filterEclass")||''
+           }
+
+
+           this.houseService.getHousesAleMaxPrice(
+               params,
+               callback.bind(this), callbackError.bind(this));
+
+
+
        }
 
     }
@@ -45,8 +116,13 @@ export default class InitialSearchPage extends React.Component{
         event.preventDefault();
    }
 
+   /*
+   fa il push a MAP
+    */
     getHouses(){
         let city = this.state.city;
+        //this.setState({prevCity: city});
+
         let callback = (results) => {
             let houseResp = results.data.response;
             this.setState({housesList: houseResp});

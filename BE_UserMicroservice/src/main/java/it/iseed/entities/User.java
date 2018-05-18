@@ -14,9 +14,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -34,7 +37,6 @@ public class User implements Serializable{
 
 	@Id                               //JPA id of the table
 	@Column(name="id")                //JPA (if column name is different from variable name)
-	@NotEmpty
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
@@ -54,6 +56,8 @@ public class User implements Serializable{
 	private Wallet wallet;
 	
 	@Transient//consente di non persistere l'attributo nel db
+	//è wishlist a tenere il riferimento ad user nella sua tabella
+	@OneToOne(mappedBy="user")
 	private Wishlist wishlist;
 	
 	

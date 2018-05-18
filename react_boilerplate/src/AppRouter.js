@@ -2,10 +2,14 @@ import React from 'react'
 import HomePage from "./scenes/HomePage/HomePage";
 import SignUpPage from "./scenes/SignUpPage/SignUpPage";
 import InitialSearchPage from "./scenes/InitialSearchPage/InitialSearchPage";
+<<<<<<< HEAD
 import MapContainer from "./scenes/MapPage/MapContainer";
 import Profile from "./scenes/Profile/profile";
 import CaratteristicHouse from "./scenes/CaratteristicHouse/caratteristicHouse";
 import AboutUs from "./scenes/AboutUs/aboutUs";
+=======
+import MapContainer from "./scenes/MapPage/MapPage";
+>>>>>>> fe7c22726a2f8d436ccc3b2ccb19d4781f0d20ae
 import {Route,Router} from 'react-router-dom';
 
 

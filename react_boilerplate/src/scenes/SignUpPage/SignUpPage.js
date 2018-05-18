@@ -33,6 +33,7 @@ export default class SignUp extends React.Component{
                           successMessage:"Complimenti per il signUp",
                           showError:false,
                           errorMessage:""});
+           this.props.history.push("/initialSearch");
         }
         signUpError(){
            this.setState({

@@ -1,7 +1,8 @@
 INSERT INTO city(name,latitude,longitude) VALUES('Milano',45.46427,9.18951);
 INSERT INTO city(name,latitude,longitude) VALUES('Roma',41.89193,12.51133);
-INSERT INTO city(name,latitude,longitude) VALUES('Firenze', 43.769562, 11.255814);
+INSERT INTO city(name,latitude,longitude) VALUES('Firenze', 43.778945, 11.255385);
 INSERT INTO city(name,latitude,longitude) VALUES('Milazzo', 43.769562, 11.255814);
+INSERT INTO city(name,latitude,longitude) VALUES('Tivoli', 41.957074, 12.787056);
 
 
 INSERT INTO house(address,latitude,longitude,type,price,area,E_class,city_fk) VALUES ('Viale Lunigiana, 15, Milano', 45.491684, 9.204736, 'Trilocale', 100000.00, 100, 'B',1);
@@ -13,5 +14,5 @@ INSERT INTO house(address,latitude,longitude,type,price,area,E_class,city_fk) VA
 INSERT INTO house(address,latitude,longitude,price,area,E_class,type,city_fk) VALUES ("Via 1, Roma",41.89311999315887, 12.478371015625044, 300000, 80, 'F', "Bilocale",2);
 INSERT INTO house(address,latitude,longitude,price,area,E_class,type,city_fk) VALUES ("Via 2, Roma", 41.89652612618998, 12.527809492187544, 180000, 90, 'G', "Bilocale",2);
 INSERT INTO house(address,latitude,longitude,price,area,E_class,type,city_fk) VALUES ("Via 3, Roma",41.89095196158848, 12.489292423508232, 200000, 40, 'B', "Bilocale",2);
-INSERT INTO house(address,latitude,longitude,price,area,E_class,type) VALUES ("Via 4, Tivoli",41.94964825517216, 12.710799551425566, 130000, 70, 'A', "Bilocale");
-INSERT INTO house(address,latitude,longitude,price,area,E_class,type) VALUES ("Via 1, Firenze",43.769582, 11.255914, 130000, 70, 'A', "Bilocale");
+INSERT INTO house(address,latitude,longitude,price,area,E_class,type,city_fk) VALUES ("Via 4, Tivoli",41.94964825517216, 12.710799551425566, 130000, 70, 'A', "Bilocale",5);
+INSERT INTO house(address,latitude,longitude,price,area,E_class,type,city_fk) VALUES ("Via 1, Firenze",43.769582, 11.255914, 130000, 70, 'A', "Bilocale",4);

@@ -12,10 +12,13 @@ package it.iseed.daos;
 
 import java.util.Optional;
 
+import it.iseed.entities.User;
 import it.iseed.entities.Wishlist;
 
 
 public interface WishlistDao {
+	
+	public boolean createWishlist(String name, User user);
 	
 	public Optional<Wishlist> getWishlistById(int id);
 	
