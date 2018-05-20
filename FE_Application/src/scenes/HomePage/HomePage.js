@@ -8,7 +8,7 @@ export default class Home extends React.Component{
     render(){
 
         return(
-            <div style={{marginTop:"40px", minHeight:"60vh"}}>
+            <div style={{marginTop:"50px", minHeight:"80vh"}}>
                 <div className = "container">
                     <LoginComponent history={this.props.history}/>
                     <SignUpComponent/>
