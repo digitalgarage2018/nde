@@ -82,12 +82,14 @@ public class WishlistController {
 	 */
 	@RequestMapping(
 			value = "/addWish",
-			params = { "jwt","idHouse" }, 
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> addWish(@RequestParam (value = "jwt") String jwt, @RequestParam (value = "idHouse") int idHouse  ) {
+	public ResponseEntity<JsonResponseBody> addWish(@RequestBody Map<String, String> body  ) {
+		
+		System.out.println("richiesta ricevuta di add wish");
 
-		boolean result = wishlistService.addWish(jwt, idHouse);
+		boolean result = wishlistService.addWish(body.get("jwt"), Integer.parseInt(body.get("idHouse")) );
+		
 		if( result == true ) {
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "House aggiunta alla wishlist" ));
 		}
@@ -144,7 +146,7 @@ public class WishlistController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), "user not authorized !" ));
 		}
 
-	}//removeWish
+	}//createWishlist
 
 
 }

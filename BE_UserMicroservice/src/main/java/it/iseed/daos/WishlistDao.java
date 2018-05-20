@@ -26,6 +26,8 @@ public interface WishlistDao {
 	
 	public boolean insertHouseByIdUser(int idUser, int idHouse);
 	
+//	public boolean insertHouseByIdUser(User user, House house);
+	
 	public boolean removeHouseByIdUser(int idUser, int idHouse);
 	
 }

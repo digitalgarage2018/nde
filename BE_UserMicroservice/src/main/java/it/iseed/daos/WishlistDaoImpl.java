@@ -11,19 +11,22 @@
 package it.iseed.daos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.iseed.entities.House;
 import it.iseed.entities.User;
-import it.iseed.entities.Wallet;
 import it.iseed.entities.Wishlist;
 
 
@@ -53,18 +56,26 @@ public class WishlistDaoImpl implements WishlistDao {
 	public Optional<Wishlist> getWishlistByIdUser(int idUser) {
 
 		Optional<Wishlist> result = Optional.empty();
-
-		//da migliorare la scrittura della query
-		Query q = entityManager.createQuery("SELECT w FROM Wishlist w WHERE w.user = :idUser");
-		q.setParameter("idUser", idUser);
-
+		
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Wishlist> cq = cb.createQuery(Wishlist.class);
+		Root<Wishlist> wish = cq.from(Wishlist.class);
+		cq.select(wish);
+		TypedQuery<Wishlist> q = entityManager.createQuery(cq);
+		
 		try {
-			result = Optional.of( (Wishlist)q.getSingleResult() );
+			
+			List<Wishlist> allWishlist = q.getResultList();
+			for(Wishlist w : allWishlist) {
+				if(w.getUser().getId() == idUser)
+					result = Optional.of(w);
+			}
+			
 		}
-		catch(NoResultException e){
-			result = Optional.empty();
+		catch(Exception e) {
+			System.out.println("problemi in persistenza:" +e.getMessage());
 		}
-
+		
 		return result;
 	}
 
@@ -90,14 +101,37 @@ public class WishlistDaoImpl implements WishlistDao {
 	}
 
 
+	
 
 	@Override
 	public boolean insertHouseByIdUser(int idUser, int idHouse) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean result = false;
+
+		Optional<Wishlist> w = getWishlistByIdUser(idUser);
+		System.out.println("recuperata wishlist");
+		
+		if( w.isPresent() ) {
+			w.get().getHouses().add(this.findHouseById(idHouse));
+			
+			try {
+				System.out.println("tentativo di aggiornamento wishlist con nuova casa:" +w.get().getHouses().get(0).getAddress());//debug
+				entityManager.merge(w.get());
+				result = true;
+			}
+			catch(Exception e) {
+				System.out.println("problema in persistenza: " +e);
+			}
+			
+		}
+		
+		return result;
 	}
 
 
+	/*
+	 * manca solo questo da implementare
+	 */
 	@Override
 	public boolean removeHouseByIdUser(int idUser, int idHouse) {
 		// TODO Auto-generated method stub
@@ -105,5 +139,13 @@ public class WishlistDaoImpl implements WishlistDao {
 	}
 
 
-
+	
+	/*
+	 * sarebbe da fare una chiamata al microservizio house,
+	 * ma per ora metto questa pezza
+	 */
+	private House findHouseById(int id){
+		return entityManager.find(House.class, id);
+	}
+	
 }

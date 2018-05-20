@@ -41,6 +41,7 @@ public class WishlistServiceImpl implements WishlistService {
 	@Autowired
 	SessionService sessionService;
 
+
 	
 
 	@Override
@@ -87,9 +88,9 @@ public class WishlistServiceImpl implements WishlistService {
 		if( map.isPresent() ) {
 			//sessione valida
 			log.debug("Debug di jwt:"+jwt);//debug
-
+			
 			//subject == idUser
-			result = wishlistDao.insertHouseByIdUser( (int)map.get().get("subject"), idHouse);
+			result = wishlistDao.insertHouseByIdUser( Integer.parseInt((String)map.get().get("subject")), idHouse);
 		}
 		else {
 			//validazione sessione fallita: il richiedente non è in possesso del token jwt
@@ -154,8 +155,7 @@ public class WishlistServiceImpl implements WishlistService {
 		return result;
 	}
 
-
-
+	
 
 
 }
