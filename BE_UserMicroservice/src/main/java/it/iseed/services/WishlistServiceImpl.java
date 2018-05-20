@@ -133,8 +133,6 @@ public class WishlistServiceImpl implements WishlistService {
 		//tento validazione sessione
 		Optional< Map<String, Object> > map = sessionService.verifyJwtAndGetData(jwt);
 		
-		///log.info("CIAO ALESSIO, il tuo id:"+map.get().get("subject"));
-
 		if( map.isPresent() ) {
 			//sessione valida
 			log.info("Debug di jwt:"+jwt);//debug

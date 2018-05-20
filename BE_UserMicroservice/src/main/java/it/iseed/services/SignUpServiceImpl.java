@@ -11,6 +11,8 @@
 package it.iseed.services;
 
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Service;
 import it.iseed.controllers.LoginController;
 import it.iseed.daos.UserDao;
 import it.iseed.daos.WalletDao;
+import it.iseed.daos.WishlistDao;
+import it.iseed.entities.User;
 
 
 
@@ -34,6 +38,9 @@ public class SignUpServiceImpl implements SignUpService {
 	
 	@Autowired
 	WalletDao walletDao;
+	
+	@Autowired
+	WishlistDao wishlistDao;
 	
 	/*
 	 * interfaccia per spedire mail, iniettato e  configurato 
@@ -49,15 +56,18 @@ public class SignUpServiceImpl implements SignUpService {
 		
 		//debug
 		log.info("tentativo di creazione user");
-		result = userDao.createUser(username, email, password);
+		Optional<User> u = userDao.createUser(username, email, password);
 		
-		if(result != false) {
-			/*
-			 * recupero di id dello user(autogenerato) e creazione del wallet per lo 
-			 * specifico user
-			 */
-			int idUser = userDao.getUserByUsername(username).get().getId();
-			result = walletDao.createWallet(idUser);
+		if( u.isPresent() ) {
+			
+			//debug id
+			log.info("l id del nuovo user è:"+u.get().getId());
+			
+			//creazione del wallet
+			result = walletDao.createWallet(u.get().getId());
+			
+			//creazione whislist 
+			result = wishlistDao.createWishlist("Lista dei desideri", u.get());
 			
 			if(result != false) {
 				//invio della mail di conferma registrazione con successo
@@ -79,7 +89,7 @@ public class SignUpServiceImpl implements SignUpService {
 					log.info("Se sei su windows disabilita l'antivirus, problema di invio mail");
 				}
 			}//wallet!=false
-		}//user!=false
+		}//user is present
 		
 		return result;
 	}

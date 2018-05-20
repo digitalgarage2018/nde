@@ -47,7 +47,7 @@ public class SignUpController {
 			value = "/signUp",
 			params = { "username", "email", "password" }
 			)
-	public ResponseEntity<JsonResponseBody>  signUser(@RequestParam (value = "username") String username, @RequestParam (value = "email") String email, @RequestParam (value = "password") String password ) {
+	public ResponseEntity<JsonResponseBody> signUser(@RequestParam (value = "username") String username, @RequestParam (value = "email") String email, @RequestParam (value = "password") String password ) {
 
 //		try {
 
@@ -58,16 +58,7 @@ public class SignUpController {
 			boolean result = signUpService.createUser(username, email, password);
 
 			if( result == true ) {
-
-				// attributo per attivare un alert lato view... migliorabile
-				//				model.addObject("authenticated", true);
-				//				request.setAttribute("authenticated", true);
-				/*
-				 * non può piu funzionare cosi ora.... da sistemare lato client
-				 */
-
 				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), result ) );
-
 			}
 			else {
 				return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), result ) );

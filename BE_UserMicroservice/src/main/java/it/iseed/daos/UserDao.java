@@ -23,6 +23,8 @@ public interface UserDao {
 
 	public Optional<User> getUserByEmail(String email);
 	
-	public boolean createUser(String username, String email, String password);
+	//public boolean createUser(String username, String email, String password);
+	
+	public Optional<User> createUser(String username, String email, String password);
 	
 }

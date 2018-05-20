@@ -10,6 +10,7 @@
 
 package it.iseed.daos;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.iseed.entities.House;
 import it.iseed.entities.User;
 import it.iseed.entities.Wallet;
 import it.iseed.entities.Wishlist;
@@ -74,6 +76,7 @@ public class WishlistDaoImpl implements WishlistDao {
 		Wishlist w = new Wishlist();
 		w.setName(name);
 		w.setUser(user);
+		w.setHouses(new ArrayList<House>());//lista vuota
 		
 		try {
 			entityManager.persist(w);
