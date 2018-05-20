@@ -128,9 +128,12 @@ export default class Filter extends React.Component {
           ]}
           />
       </div>
+                                <button
+                                    className = "btn btn-primary pull-right"
+                                    onClick={this.handleOnClickButton}>
+                                    Cerca
+                                </button>
 
-
-          <button className='button' onClick={this.handleOnClickButton}>CERCA</button>
 
 
     </div>
