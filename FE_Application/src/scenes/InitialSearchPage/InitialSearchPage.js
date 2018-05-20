@@ -162,12 +162,13 @@ export default class InitialSearchPage extends React.Component{
    render(){ 
 
       return( 
-        <div style={{marginTop:"100px", minHeight:"70vh"}}>
+        <div style={{paddingTop:"100px", minHeight:"80vh"}}>
             <div className = "container">
                 <div className = "row">
-                    <div className = "col-6 mr-auto ml-auto">
+                    <p style={{textAlign:"center", padding:"10px"}}><h4> What is your dream city?</h4></p>
+                    <div className = "col-6 mr-auto ml-auto" style={{marginRight:"150px", marginLeft:"150px"}}>
                        <form onSubmit = {this.onSubmit.bind(this)}>
-                          <div className = "form-group">
+                          <div className = "form-group" >
                              <input 
                                  type="text"
                                  className = "form-control"

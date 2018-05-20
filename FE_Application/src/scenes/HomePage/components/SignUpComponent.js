@@ -96,7 +96,7 @@ export default class SignUpComponent extends React.Component{
     let errorMessage= this.getErrorMessage();
 
       return( 
-        <div style={{minHeight:"40vh"}}>
+        <div>
            
             <div className = "container" >
                    <div className = "row" >

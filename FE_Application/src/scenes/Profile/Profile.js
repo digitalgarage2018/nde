@@ -18,7 +18,7 @@ function addProducts(quantity) {
     }
   }
   
-addProducts(5);
+addProducts(10);
 
 export default class Profile extends React.Component{ 
 
@@ -28,9 +28,9 @@ export default class Profile extends React.Component{
       return( 
      
          
-        <div style={{marginTop:"20px", minHeight:"70vh", padding:"20px"}}>    
+        <div style={{marginTop:"20px", minHeight:"80vh", padding:"20px"}}>    
           <div>
-          <img src={ProfileImm} style={{float:'left', marginLeft: '20px', marginRight:'20px'}}/>
+          <img src={ProfileImm} style={{float:'left', marginLeft: '40px', marginRight:'40px'}}/>
           <h5>
              Username: <Label> my username </Label>
           </h5>
@@ -42,7 +42,7 @@ export default class Profile extends React.Component{
           </h5> 
         </div>
 
-        <div style={{padding:'20px'}}>
+        <div style={{padding:'40px', marginTop:"40px"}}>
         <BootstrapTable data={ products }>
             <TableHeaderColumn dataField='id' width='50' isKey={ true }>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='address' width='150'>Address</TableHeaderColumn>
