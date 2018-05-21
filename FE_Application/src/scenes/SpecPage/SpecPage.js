@@ -5,8 +5,24 @@ import HouseImm from './resources/casa.png';
 import compon from './resources/compon.png';
 import compon1 from './resources/compon1.png';
 import {Grid, Row,Col, Thumbnail, ButtonToolbar, Button, Glyphicon} from 'react-bootstrap';
+import HouseService from "../../services/houseService/HouseService";
 
 export default class SpecPage extends React.Component{
+    constructor(props) {
+        super(props);
+
+
+        this.state = {
+            placeName: localStorage.getItem("specPlaceName")||"",
+            price: localStorage.getItem("specPrice")||"",
+            area: localStorage.getItem("specArea")||"",
+            eClass: localStorage.getItem("specEclass")||"",
+            type: localStorage.getItem("specType")||""
+        };
+        this.houseService = new HouseService();
+    }
+
+
     render(){ 
  
         return( 
@@ -23,19 +39,16 @@ export default class SpecPage extends React.Component{
 
             <div style={{margin:"20px"}}>
             <h4>
-              Address: <Label> via Sismondi, 7 </Label>
+              Address: <Label> {this.state.placeName} </Label>
             </h4>
             <h4>
-              City: <Label> Milano </Label>
+              Type: <Label> {this.state.type}  </Label>
             </h4>
             <h4>
-              Type: <Label> Loft </Label>
-            </h4>
-            <h4>
-              E_Class: <Label> C </Label>
+              E_Class: <Label> {this.state.eClass}  </Label>
             </h4> 
             <h4>
-              Price: <Label> 100.000 </Label>
+              Price: <Label> {this.state.price}  </Label>
             </h4>
             </div>
             </div>

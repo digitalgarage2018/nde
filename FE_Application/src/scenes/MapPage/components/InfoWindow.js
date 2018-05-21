@@ -6,6 +6,7 @@ import Logo from '../../../components/Navbar/notebook.png';
 import {Link} from 'react-router-dom';
 
 import {Button} from "../../../components/Button/Button";
+import HouseService from "../../../services/houseService/HouseService";
 
 export class InfoWindow extends React.Component {
 
@@ -39,6 +40,7 @@ export class InfoWindow extends React.Component {
         this.infowindow.setContent(content);
     }
 
+
     renderChildren() {
         const {children} = this.props;
         return ReactDOMServer.renderToString(<div>
@@ -51,7 +53,7 @@ export class InfoWindow extends React.Component {
             <p> E Class: {this.props.placeEclass} </p>
             <p> Type: {this.props.placeType} </p>
 
-            <a className="nav-item nav-link" href="/specPage">
+            <a className="nav-item nav-link" href="/specPage" >
                 Details
             </a>
 

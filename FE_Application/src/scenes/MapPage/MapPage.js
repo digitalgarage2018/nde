@@ -43,13 +43,23 @@ export class MapPage extends React.Component {
         event.preventDefault();
     }
 
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick (props, marker, e) {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
 
             showingInfoWindow: true
         });
+
+        localStorage.setItem("specPlaceName",props.name.toString());
+        localStorage.setItem("specPrice",props.priceTag.toString());
+        localStorage.setItem("specArea",props.area.toString());
+        localStorage.setItem("specEclass",props.eClass.toString());
+        localStorage.setItem("specType",props.type.toString());
+
+
+
+    }
 
     onInfoWindowClose () {
         this.setState({
@@ -182,11 +192,13 @@ export class MapPage extends React.Component {
                                             value = {this.state.city || ''}
                                             onChange = {this.changeCity.bind(this)}/>
                                     </div>
+
                                     <button
                                         className = "btn btn-primary pull-right"
                                         onClick={this.getHouses.bind(this)}>
                                         Cerca
                                     </button>
+
                                 </form>
                             </div>
                         </div>
@@ -201,7 +213,7 @@ export class MapPage extends React.Component {
 
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} handler={this.searchByMap.bind(this)} >
 
-                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
+                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick.bind(this)}
                                                                house={house}
                                                                name={house.address}
                                                                priceTag={house.price}
