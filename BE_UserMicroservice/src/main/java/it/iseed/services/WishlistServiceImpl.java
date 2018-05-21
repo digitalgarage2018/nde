@@ -57,7 +57,7 @@ public class WishlistServiceImpl implements WishlistService {
 			log.debug("Debug di jwt:"+jwt);//debug
 
 			//subject == idUser
-			Optional<Wishlist> wishlist = wishlistDao.getWishlistByIdUser( (int)map.get().get("subject") );
+			Optional<Wishlist> wishlist = wishlistDao.getWishlistByIdUser( Integer.parseInt((String)map.get().get("subject")) );
 			if( wishlist.isPresent() ) {
 				//richiesta al db processata correttamente
 				result = wishlist;;

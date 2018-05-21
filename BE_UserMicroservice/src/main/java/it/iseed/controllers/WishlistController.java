@@ -55,12 +55,13 @@ public class WishlistController {
 	 */
 	@RequestMapping(
 			value = "/getWishlist",
-			params = { "jwt" }, 
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> getWishlist(@RequestParam (value = "jwt") String jwt ) {
+	public ResponseEntity<JsonResponseBody> getWishlist(@RequestBody Map<String, String> body ) {
 
-		Optional< Wishlist > wishlist = wishlistService.getWishlist(jwt);
+		System.out.println("richiesta di wishlist ricevuta");//debug
+		
+		Optional< Wishlist > wishlist = wishlistService.getWishlist(body.get("jwt"));
 		if( wishlist.isPresent() ) {
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), wishlist.get() ));
 		}

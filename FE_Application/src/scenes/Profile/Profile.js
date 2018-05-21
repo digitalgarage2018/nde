@@ -2,6 +2,8 @@ import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import {Label} from 'react-bootstrap';
 import ProfileImm from './resources/avatar.png';
+import HouseService from "../../services/houseService/HouseService";
+import WishlistService from "../../services/wishlistService/WishlistService";
 
 
 const products = [];
@@ -17,13 +19,38 @@ function addProducts(quantity) {
       });
     }
   }
+
+
   
 addProducts(10);
 
-export default class Profile extends React.Component{ 
+export default class Profile extends React.Component{
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            wishlist: []
+        }
+
+
+
+        this.wishlistService = new WishlistService();
+
+        let callback = (results) => {
+            let wishlist = results.data.response.houses;
+            this.setState({wishlist: wishlist});
+            console.log("appena impostato lo stato");
+            console.log(this.state.wishlist);
+        };
+
+        this.wishlistService.getWishlist(callback);
+    }
 
 
    render(){ 
+
+        //let table = this.state.wishlist.map( house =>  )
 
       return( 
      
@@ -43,7 +70,7 @@ export default class Profile extends React.Component{
         </div>
 
         <div style={{padding:'40px', marginTop:"40px"}}>
-        <BootstrapTable data={ products }>
+        <BootstrapTable data={ this.state.wishlist }>
             <TableHeaderColumn dataField='id' width='50' isKey={ true }>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='address' width='150'>Address</TableHeaderColumn>
             <TableHeaderColumn dataField='type' width='150'>Type</TableHeaderColumn>
