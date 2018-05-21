@@ -71,15 +71,7 @@ public class WishlistController {
 	}//getWishlist
 
 
-	/*
-	 * vincolo su post!
-	 * utilizzo della classe JsonResponseBody per uniformare le risposte
-	 * 
-	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto, che viene restituito
-	 * nel header al chiamante nel caso di avvenuta autenticazione con successo.
-	 * 
-	 * il jwt contiene l'informazione sullo User, username, ma anche id!
-	 */
+
 	@RequestMapping(
 			value = "/addWish",
 			method = RequestMethod.POST
@@ -102,23 +94,17 @@ public class WishlistController {
 
 
 
-	/*
-	 * vincolo su post!
-	 * utilizzo della classe JsonResponseBody per uniformare le risposte
-	 * 
-	 * SESSIONE: mantenuta con un JWT, un particolare cookie di fatto, che viene restituito
-	 * nel header al chiamante nel caso di avvenuta autenticazione con successo.
-	 * 
-	 * il jwt contiene l'informazione sullo User, username, ma anche id!
-	 */
+
 	@RequestMapping(
 			value = "/removeWish",
-			params = { "jwt","idHouse" }, 
 			method = RequestMethod.POST
 			)
-	public ResponseEntity<JsonResponseBody> removeWish(@RequestParam (value = "jwt") String jwt, @RequestParam (value = "idHouse") int idHouse  ) {
+	public ResponseEntity<JsonResponseBody> removeWish(@RequestBody Map<String, String> body ) {
 
-		boolean result = wishlistService.removeWish(jwt, idHouse);
+		System.out.println("richiesta ricevuta di remove wish");
+		
+		boolean result = wishlistService.removeWish(body.get("jwt"), Integer.parseInt(body.get("idHouse")) );
+		
 		if( result == true ) {
 			return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), "House rimossa dalla wishlist" ));
 		}

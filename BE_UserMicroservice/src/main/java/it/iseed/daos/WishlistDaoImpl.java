@@ -112,30 +112,53 @@ public class WishlistDaoImpl implements WishlistDao {
 		System.out.println("recuperata wishlist");
 		
 		if( w.isPresent() ) {
-			w.get().getHouses().add(this.findHouseById(idHouse));
 			
-			try {
-				System.out.println("tentativo di aggiornamento wishlist con nuova casa:" +w.get().getHouses().get(0).getAddress());//debug
-				entityManager.merge(w.get());
-				result = true;
-			}
-			catch(Exception e) {
-				System.out.println("problema in persistenza: " +e);
-			}
-			
-		}
+			Optional<House> h = this.findHouseById(idHouse);
+			if( h.isPresent() ) {
+				w.get().getHouses().add(h.get());
+				
+				try {
+					System.out.println("tentativo di aggiornamento wishlist con nuova casa:" +w.get().getHouses().get(0).getAddress());//debug
+					entityManager.merge(w.get());
+					result = true;
+				}
+				catch(Exception e) {
+					System.out.println("problema in persistenza: " +e);
+				}
+			}//h is present
+		}//w is present
 		
 		return result;
 	}
 
 
-	/*
-	 * manca solo questo da implementare
-	 */
 	@Override
 	public boolean removeHouseByIdUser(int idUser, int idHouse) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean result = false;
+
+		Optional<Wishlist> w = getWishlistByIdUser(idUser);
+		System.out.println("recuperata wishlist");
+		
+		if( w.isPresent() ) {
+			
+			Optional<House> h = this.findHouseById(idHouse);
+			if( h.isPresent() ) {
+				w.get().getHouses().remove(h.get());
+				
+				try {
+					System.out.println("tentativo di rimozione casa da wishlist:" +h.get().getAddress());//debug
+					entityManager.merge(w.get());
+					result = true;
+				}
+				catch(Exception e) {
+					System.out.println("problema in persistenza: " +e);
+				}
+				
+			}//h != null
+		}// w is present
+		
+		return result;
 	}
 
 
@@ -144,8 +167,15 @@ public class WishlistDaoImpl implements WishlistDao {
 	 * sarebbe da fare una chiamata al microservizio house,
 	 * ma per ora metto questa pezza
 	 */
-	private House findHouseById(int id){
-		return entityManager.find(House.class, id);
+	private Optional<House> findHouseById(int id){
+		Optional<House> result = Optional.empty();
+		
+		House h = entityManager.find(House.class, id);
+		
+		if(h != null)
+			result = Optional.of(h);
+
+		return result;
 	}
 	
 }
