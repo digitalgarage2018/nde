@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.iseed.entities.JsonResponseBody;
+import it.iseed.entities.User;
 import it.iseed.services.LoginService;
 
 @RestController
@@ -88,10 +89,15 @@ public class LoginController {
 				 * il suo jwt
 				 */
 				log.info(jwt.get());//debug
+				
+				//mi serve anche mail... pezza per recupare user
+				User u = loginService.getUserByUsername(request.getUsername()).get();
 
 				ResponseDTO response= new ResponseDTO();
 				response.setSuccess(true);
 				response.setToken(jwt.get());
+				response.setUsername(u.getUsername());
+				response.setEmail(u.getEmail());
 
 				/* 
 				 * Settaggio degli header per corretto interfacciamento con axios
@@ -153,6 +159,9 @@ public class LoginController {
 	private class ResponseDTO{
 		private boolean success;
 		private String token;
+		private String username;
+		private String email;
+		
 		@SuppressWarnings("unused")
 		public boolean isSuccess() {
 			return success;
@@ -171,6 +180,24 @@ public class LoginController {
 		public String toString() {
 			return "ResponseDTO [success=" + success + ", token=" + token + "]";
 		}
+		@SuppressWarnings("unused")
+		public String getUsername() {
+			return username;
+		}
+		@SuppressWarnings("unused")
+		public String getEmail() {
+			return email;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		
+		
+		
 	}//DTO
 
 

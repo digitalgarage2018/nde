@@ -5,6 +5,7 @@ import LoginService from "../../../services/loginService/LoginService";
 export default class LoginComponent extends React.Component{ 
    constructor(props){ 
       super(props);
+
         this.state = {
           username: '',
           password: '',
@@ -13,6 +14,7 @@ export default class LoginComponent extends React.Component{
           errorMessage:"",
           successMessage:"",
         }
+
     this.loginService = new LoginService();
     }
 
@@ -34,7 +36,12 @@ export default class LoginComponent extends React.Component{
                        successMessage:"Complimenti per il login, il tuo token è: " + dataResult,
                        showError:false,
                        errorMessage:""});
-            localStorage.setItem("token", dataResult);
+            localStorage.setItem("token", dataResult.token.toString());
+            localStorage.setItem("loggedUsername", dataResult.username);
+            localStorage.setItem("loggedEmail", dataResult.email);
+
+            console.log("l'username dell utente loggato è:" +localStorage.getItem("loggedUsername"));
+
             this.props.history.push("/initialSearch");
         }
 

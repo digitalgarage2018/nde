@@ -14,6 +14,8 @@ package it.iseed.services;
 
 import java.util.Optional;
 
+import it.iseed.entities.User;
+
 
 public interface LoginService {
 
@@ -21,6 +23,8 @@ public interface LoginService {
 	 * verifica credenziali e generazione jwt
 	 */
 	public Optional<String> authenticateUser(String username, String password) ;
+	
+	public Optional<User> getUserByUsername(String username);
 
 
 }

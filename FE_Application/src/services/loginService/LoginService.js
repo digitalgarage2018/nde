@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default class LoginService{
+
    login(username, password, onSuccess, onError){
        console.log(username, password);
        const data=JSON.stringify({
@@ -16,10 +17,12 @@ export default class LoginService{
       console.log(result);   
       console.log("Login effettuato con successo, token: ", result.data.response);
       if (result.data.response.success)   
-        onSuccess(result.data.response.token);
+        onSuccess(result.data.response);
       else onError();
       }, function(error){
          console.error(error);
       });
   }
+
+
 }

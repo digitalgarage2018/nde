@@ -32,10 +32,10 @@ export default class Profile extends React.Component{
           <div>
           <img src={ProfileImm} style={{float:'left', marginLeft: '40px', marginRight:'40px'}}/>
           <h5>
-             Username: <Label> my username </Label>
+             Username: <Label> {localStorage.getItem("loggedUsername")}</Label>
           </h5>
           <h5>
-            Email: <Label> my email </Label>
+            Email: <Label> {localStorage.getItem("loggedEmail")} </Label>
           </h5>
           <h5>
              My wallet: <Label> 100000 </Label>

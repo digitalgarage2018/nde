@@ -74,5 +74,12 @@ public class LoginServiceImpl implements LoginService {
 
 
 
+	@Override
+	public Optional<User> getUserByUsername(String username) {
+		return userDao.getUserByUsername(username);
+	}
+
+
+
 
 }
