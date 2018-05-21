@@ -14,31 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WishlistService.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/services/wishlistService/WishlistService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="36" column="59" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpecPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scenes/SpecPage/SpecPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="75" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MapPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="56" column="70" lean-forward="true" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
+            <state relative-caret-position="153">
+              <caret line="194" column="75" selection-start-line="194" selection-start-column="65" selection-end-line="194" selection-end-column="75" />
               <folding>
                 <element signature="e#417#471#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Map.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +61,6 @@
         <option value="$PROJECT_DIR$/src/scenes/SignUpPage/SignUpPage.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/services/houseService/HouseService.js" />
-        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/Map.js" />
         <option value="$PROJECT_DIR$/src/services/cityService/CityService.js" />
         <option value="$PROJECT_DIR$/src/scenes/InitialSearchPage/InitialSearchPage.js" />
         <option value="$PROJECT_DIR$/src/scenes/HomePage/components/SignUpComponent.js" />
@@ -85,9 +78,10 @@
         <option value="$PROJECT_DIR$/src/services/loginService/LoginService.js" />
         <option value="$PROJECT_DIR$/src/scenes/HomePage/components/LoginComponent.js" />
         <option value="$PROJECT_DIR$/src/scenes/Profile/Profile.js" />
-        <option value="$PROJECT_DIR$/src/scenes/MapPage/MapPage.js" />
         <option value="$PROJECT_DIR$/src/scenes/SpecPage/SpecPage.js" />
         <option value="$PROJECT_DIR$/src/services/wishlistService/WishlistService.js" />
+        <option value="$PROJECT_DIR$/src/scenes/MapPage/MapPage.js" />
+        <option value="$PROJECT_DIR$/src/scenes/MapPage/components/Map.js" />
       </list>
     </option>
   </component>
@@ -329,12 +323,12 @@
       <workItem from="1526633900082" duration="670000" />
       <workItem from="1526645548213" duration="5329000" />
       <workItem from="1526842215114" duration="628000" />
-      <workItem from="1526887536651" duration="9443000" />
+      <workItem from="1526887536651" duration="11305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61907000" />
+    <option name="totallyTimeSpent" value="63769000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1294" height="704" extended-state="6" />
@@ -641,16 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/InfoWindow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-697">
@@ -685,16 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="56" column="70" lean-forward="true" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
-          <folding>
-            <element signature="e#417#471#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/SpecPage/SpecPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -706,6 +680,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="36" column="59" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/components/Map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/MapPage/MapPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="194" column="75" selection-start-line="194" selection-start-column="65" selection-end-line="194" selection-end-column="75" />
+          <folding>
+            <element signature="e#417#471#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

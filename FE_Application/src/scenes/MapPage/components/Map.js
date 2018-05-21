@@ -191,7 +191,7 @@ export class Map extends React.Component {
 
     render() {
         const style = {
-            width: '100vw',
+            width: '45vw',
             height: '100vh'
         }
         return (

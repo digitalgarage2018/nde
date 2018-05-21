@@ -165,6 +165,7 @@ export class MapPage extends React.Component {
             height: '100vh'
         }
 
+
         const pos = {lat: 25.783318, lng: -80.134017} //i.e. Miami Beach
 
         // const pos2 = {lat: (this.state.houseList[5].latitude), lng: (this.state.houseList[5].longitude)};
@@ -182,26 +183,31 @@ export class MapPage extends React.Component {
 
         return (
 
+
             <div style={style}>
-                <div style={{marginTop:"100px", minHeight:"0"}}>
+
+            <div className="col-sm-6">
+                <div>
                     <div className = "container">
                         <div className = "row">
                             <div className = "col-6 mr-auto ml-auto">
                                 <form onSubmit = {this.onSubmit.bind(this)}>
-                                    <div className = "form-group">
+                                    <div className = "form-group; col-sm-6 ">
                                         <input
                                             type="text"
                                             className = "form-control"
                                             placeholder="città"
                                             value = {this.state.city || ''}
                                             onChange = {this.changeCity.bind(this)}/>
+
+                                        <button
+                                            className = "btn btn-primary pull-right"
+                                            onClick={this.getHouses.bind(this)}>
+                                            Cerca
+                                        </button>
                                     </div>
 
-                                    <button
-                                        className = "btn btn-primary pull-right"
-                                        onClick={this.getHouses.bind(this)}>
-                                        Cerca
-                                    </button>
+
 
                                 </form>
                             </div>
@@ -214,46 +220,50 @@ export class MapPage extends React.Component {
                 <CitySearchComponent filter={filter}/>
 
                 <Filter handler={this.searchByFilter.bind(this)}/>
-
-                <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} handler={this.searchByMap.bind(this)} >
-
-                    {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick.bind(this)}
-                                                               house={house}
-                                                               name={house.address}
-                                                               priceTag={house.price}
-                                                               position={{lat: house.latitude, lng: house.longitude}}
-                                                               area={house.area}
-                                                               eClass={house.e_class}
-                                                               type={house.type}
-
-                    />)}
-                    {/*<Marker position={{lat: this.state.houseList[0].latitude, lng: this.state.houseList[0].longitude}}/>
-                    <Marker/>
-                    <Marker/>*/}
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onInfoWindowClose.bind(this)}
-                        placeName={this.state.selectedPlace.name}
-                        placePrice={this.state.selectedPlace.priceTag}
-                        placeArea={this.state.selectedPlace.area}
-                        placeEclass={this.state.selectedPlace.eClass}
-                        placeType={this.state.selectedPlace.type}
-                        handlerBottone={this.onInfoWindowClick.bind(this)}
-                    >
-                        <Button title={"Bottone"} customOnClick={this.onInfoWindowClick.bind(this)}/>
-                    </InfoWindow>
-
-                    {/*<button
-                        className = "btn btn-primary pull-right"
-                        onDoubleClick={ this.props.handlerButton  }
-                    >
-                        View details
-                    </button>*/}
+            </div>
 
 
+                <div className="col-sm-6">
+                    <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} handler={this.searchByMap.bind(this)} >
 
-                </Map>
+                        {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick.bind(this)}
+                                                                   house={house}
+                                                                   name={house.address}
+                                                                   priceTag={house.price}
+                                                                   position={{lat: house.latitude, lng: house.longitude}}
+                                                                   area={house.area}
+                                                                   eClass={house.e_class}
+                                                                   type={house.type}
+
+                        />)}
+                        {/*<Marker position={{lat: this.state.houseList[0].latitude, lng: this.state.houseList[0].longitude}}/>
+                        <Marker/>
+                        <Marker/>*/}
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onInfoWindowClose.bind(this)}
+                            placeName={this.state.selectedPlace.name}
+                            placePrice={this.state.selectedPlace.priceTag}
+                            placeArea={this.state.selectedPlace.area}
+                            placeEclass={this.state.selectedPlace.eClass}
+                            placeType={this.state.selectedPlace.type}
+                            handlerBottone={this.onInfoWindowClick.bind(this)}
+                        >
+                            <Button title={"Bottone"} customOnClick={this.onInfoWindowClick.bind(this)}/>
+                        </InfoWindow>
+
+                        {/*<button
+                            className = "btn btn-primary pull-right"
+                            onDoubleClick={ this.props.handlerButton  }
+                        >
+                            View details
+                        </button>*/}
+
+
+
+                    </Map>
+                </div>
 
 
 
