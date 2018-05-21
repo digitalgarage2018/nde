@@ -19,8 +19,6 @@ export default class CitySearchComponent extends React.Component {
 
     onTextChange(event){
 
-        this.props.change(event);
-
         this.cityService.getCitiesLike(event.target.value, this.showHints.bind(this), this.errorCallback.bind(this) )
 
         this.setState(
@@ -54,30 +52,26 @@ export default class CitySearchComponent extends React.Component {
 
         if(this.state.city != "")
             listItems = this.state.hints.map((hint) =>
-            <li>{hint}</li>
-        );
+                <li>{hint}</li>
+            );
 
 
-        return (
-            <div style={{marginTop:"100px", minHeight:"0"}}>
-                <div className = "container">
-                    <div className = "row">
-                        <div className = "col-6 mr-auto ml-auto">
-                                <div className = "form-group">
-                                    <input
-                                        type="text"
-                                        className = "form-control"
-                                        placeholder="città"
-                                        value = {this.state.city || ''}
-                                        onChange = {this.onTextChange.bind(this)}/>
-                                </div>
-                                <div>
-                                    {listItems}
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>)
+        return (<div>
+
+            <input type="text" onChange={this.onTextChange.bind(this)}/>
+
+            <div>
+                {/* {
+                    this.state.hints.map( cityName =>
+                            {cityName}
+                    )
+                }*/}
+                {listItems}
+            </div>
+
+            <button onClick={this.search.bind(this)} />
+
+        </div>)
     }
 
 

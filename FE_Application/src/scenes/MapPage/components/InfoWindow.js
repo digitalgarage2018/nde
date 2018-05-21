@@ -51,7 +51,7 @@ export class InfoWindow extends React.Component {
             <p> E Class: {this.props.placeEclass} </p>
             <p> Type: {this.props.placeType} </p>
 
-            <a className="nav-item nav-link" href="/initialSearch">
+            <a className="nav-item nav-link" href="/specPage">
                 Details
             </a>
 

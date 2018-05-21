@@ -58,7 +58,7 @@ export class MapPage extends React.Component {
         });
         // console.log("chiusura");
         // this.props.history.push("/");
-       // this.onInfoWindowClick();
+        // this.onInfoWindowClick();
     }
 
 
@@ -102,7 +102,7 @@ export class MapPage extends React.Component {
     un indirizzamento
      */
     searchByFilter(){
-       // console.log("ALESSIO: search by filter");
+        // console.log("ALESSIO: search by filter");
         this.props.history.push("/initialSearch");
     }
 
@@ -124,7 +124,6 @@ export class MapPage extends React.Component {
 
     onInfoWindowClick () {
         console.log("Ciao Windows clisckckackaskd");
-        
         this.props.history.push("/");
 
         // this.props.history.push(variable);
@@ -163,21 +162,43 @@ export class MapPage extends React.Component {
         /*
         GIANMARCO: I must write down the markers in the return for the Container rendering, in order to let them be seen on map.
         That's a strange behaviour since I must be able to retrieve that from Axios and then create a Marker.
-
          {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick} name={''} position={} />)}*/
 
         let filter = <Filter handlerFather={this.setFilterParams.bind(this)}/>;
 
         return (
-            <div>
-                <div className="row">
 
-                <div className="col-sm-6">
-                <CitySearchComponent filter={filter} change={this.changeCity.bind(this)} click={this.getHouses.bind(this)}/>
+            <div style={style}>
+                <div style={{marginTop:"100px", minHeight:"0"}}>
+                    <div className = "container">
+                        <div className = "row">
+                            <div className = "col-6 mr-auto ml-auto">
+                                <form onSubmit = {this.onSubmit.bind(this)}>
+                                    <div className = "form-group">
+                                        <input
+                                            type="text"
+                                            className = "form-control"
+                                            placeholder="città"
+                                            value = {this.state.city || ''}
+                                            onChange = {this.changeCity.bind(this)}/>
+                                    </div>
+                                    <button
+                                        className = "btn btn-primary pull-right"
+                                        onClick={this.getHouses.bind(this)}>
+                                        Cerca
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+
+                <CitySearchComponent filter={filter}/>
 
                 <Filter handler={this.searchByFilter.bind(this)}/>
-                </div>
-                <div className="col-sm-6">
+
                 <Map google={this.props.google} houseList={this.state.houseList} onClick={this.onMapClick} handler={this.searchByMap.bind(this)} >
 
                     {this.state.houseList.map(house => <Marker onClick={this.onMarkerClick}
@@ -217,8 +238,7 @@ export class MapPage extends React.Component {
 
 
                 </Map>
-                </div>
-            </div>
+
 
 
             </div>
