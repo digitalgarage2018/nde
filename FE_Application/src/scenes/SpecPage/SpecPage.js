@@ -6,6 +6,7 @@ import compon from './resources/compon.png';
 import compon1 from './resources/compon1.png';
 import {Grid, Row,Col, Thumbnail, ButtonToolbar, Button, Glyphicon} from 'react-bootstrap';
 import HouseService from "../../services/houseService/HouseService";
+import WishlistService from "../../services/wishlistService/WishlistService";
 
 export default class SpecPage extends React.Component{
     constructor(props) {
@@ -13,13 +14,25 @@ export default class SpecPage extends React.Component{
 
 
         this.state = {
+            idHouse: localStorage.getItem("specIdHouse")||"",
             placeName: localStorage.getItem("specPlaceName")||"",
             price: localStorage.getItem("specPrice")||"",
             area: localStorage.getItem("specArea")||"",
             eClass: localStorage.getItem("specEclass")||"",
             type: localStorage.getItem("specType")||""
         };
+
+        this.wishlistService = new WishlistService();
         this.houseService = new HouseService();
+    }
+
+
+    handleClick(){
+
+
+        this.wishlistService.addWish()
+
+        console.log("wish aggiunto");
     }
 
 
@@ -31,7 +44,7 @@ export default class SpecPage extends React.Component{
 
            <div style={{padding:"20px"}}>
            <ButtonToolbar>
-                 <Button onClick={this.handleClick} bsSize="large">
+                 <Button onClick={this.handleClick.bind(this)} bsSize="large">
                   <Glyphicon glyph="star" /> Like It!!
                  </Button>
             </ButtonToolbar>

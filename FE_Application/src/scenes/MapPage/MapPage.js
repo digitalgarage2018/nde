@@ -54,6 +54,7 @@ export class MapPage extends React.Component {
         /*
         per render di Spec Page
          */
+        localStorage.setItem("specIdHouse",props.house.id.toString());
         localStorage.setItem("specPlaceName",props.name.toString());
         localStorage.setItem("specPrice",props.priceTag.toString());
         localStorage.setItem("specArea",props.area.toString());
