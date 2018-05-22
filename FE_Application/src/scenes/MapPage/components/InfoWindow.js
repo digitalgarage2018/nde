@@ -46,7 +46,7 @@ export class InfoWindow extends React.Component {
         return ReactDOMServer.renderToString(<div>
 
             <img src={ Logo } className="logo-image"  />
-            <h1> {this.props.placeName} </h1>
+            <h5> {this.props.placeName} </h5>
             {/*<p> {this.props.placePrice)} </p>*/}
             <p> Price: {this.props.placePrice} euro</p>
             <p> Area: {this.props.placeArea} mq</p>

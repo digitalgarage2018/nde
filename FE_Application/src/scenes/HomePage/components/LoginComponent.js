@@ -31,6 +31,9 @@ export default class LoginComponent extends React.Component{
     }
 
     loginSuccess(dataResult){
+
+       localStorage.clear();
+
         this.setState({
                        showSuccess:true, 
                        successMessage:"Complimenti per il login, il tuo token è: " + dataResult,

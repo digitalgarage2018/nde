@@ -36,13 +36,15 @@ export default class Filter extends React.Component {
     handleTypeChange = (selectedOption) => {
         this.setState({ type: selectedOption.label });
         console.log(`Selected: ${selectedOption.label}`);
+        localStorage.setItem("filterType",selectedOption.label);
     }
     handleClassChange = (selectedOption) => {
         this.setState({ E_class: selectedOption.label });
         console.log(`Selected: ${selectedOption.label}`);
+        localStorage.setItem("filterEclass",selectedOption.label);
     }
 
-    handleOnClickButton = () => {
+   /* handleOnClickButton = () => {
         localStorage.setItem("filterRange",this.state.range.toString());
         localStorage.setItem("filterMaxPrice",this.state.price.max.toString());
         localStorage.setItem("filterMinPrice",this.state.price.min.toString());
@@ -56,17 +58,33 @@ export default class Filter extends React.Component {
 
         //chiamata a handler di MapPage, eseguirà l'indirizzamento
         this.props.handler();
+    }*/
+
+    handleDistanceSlider(target){
+        this.setState({ range: target });
+        console.log(target);
+        localStorage.setItem("mapSearchRange",this.state.range.toString());
+        localStorage.setItem("filterRange",this.state.range.toString());
     }
 
-    handleDistanceSlider(){
-        localStorage.setItem("mapSearchRange",this.state.range.toString());
+    handleAreaChange(target){
+        this.setState({ area: target });
+        localStorage.setItem("filterMaxArea",this.state.area.max.toString());
+        localStorage.setItem("filterMinArea",this.state.area.min.toString());
     }
+
+    handlePriceChange(target){
+        this.setState({ price: target });
+        localStorage.setItem("filterMaxPrice",this.state.price.max.toString());
+        localStorage.setItem("filterMinPrice",this.state.price.min.toString());
+    }
+
 
     render() {
 
         return (
 
-            <div style={{marginTop:"100px", minHeight:"20vh", paddingLeft:"50px", paddingRight:"50px"}}>
+            <div style={{margin:60}}>
 
                 <div className='slider'>
 
@@ -75,8 +93,7 @@ export default class Filter extends React.Component {
                         maxValue={20}
                         minValue={0}
                         value={this.state.range}
-                        onChange={range => this.setState({ range })}
-                        onChangeComplete={this.handleDistanceSlider.bind(this)}
+                        onChange={this.handleDistanceSlider.bind(this)}
                     />
 
                     <p>Mq</p>
@@ -84,24 +101,24 @@ export default class Filter extends React.Component {
                         maxValue={500}
                         minValue={0}
                         value={this.state.area}
-                        onChange={area => this.setState({ area })} />
+                        onChange={this.handleAreaChange.bind(this)} />
 
                     <p>Prezzo</p>
                     <InputRange
                         maxValue={1000000}
                         minValue={0}
                         value={this.state.price}
-                        onChange={price => this.setState({ price })}
+                        onChange={this.handlePriceChange.bind(this)}
                     />
                 </div>
 
 
 
-                <div style={{marginTop:"10px", paddingRight:"800px"}}>
+
                     <Select
                         name="E_Class"
                         value={this.state.E_class}
-                        onChange={this.handleClassChange}
+                        onChange={this.handleClassChange.bind(this)}
                         options={[
                             { value: 'A', label: 'A' },
                             { value: 'B', label: 'B' },
@@ -112,13 +129,13 @@ export default class Filter extends React.Component {
                             { value: 'G', label: 'G' },
                         ]}
                     />
-                </div>
 
-                <div style={{marginTop:"10px", paddingRight:"800px", minHeight:"20vh"}}>
+
+
                     <Select
                         name="Type"
                         value={this.state.type}
-                        onChange={this.handleTypeChange}
+                        onChange={this.handleTypeChange.bind(this)}
                         options={[
                             { value: 'Bilocale', label: 'Bilocale' },
                             { value: 'Trilocale', label: 'Trilocale' },
@@ -127,10 +144,10 @@ export default class Filter extends React.Component {
                             { value: 'Loft', label: 'Loft' },
                         ]}
                     />
-                </div>
 
 
-                <button className='button' onClick={this.handleOnClickButton}>CERCA</button>
+
+                {/*<button className='button' onClick={this.handleOnClickButton}>CERCA</button>*/}
 
 
             </div>

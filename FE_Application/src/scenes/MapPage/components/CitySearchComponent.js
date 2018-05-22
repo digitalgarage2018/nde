@@ -28,6 +28,8 @@ export default class CitySearchComponent extends React.Component {
         );
         console.log("provo service con parametro:"+event.target.value);
 
+        localStorage.setItem('currentCity',event.target.value);
+
     }
 
     showHints(hints){
@@ -44,7 +46,12 @@ export default class CitySearchComponent extends React.Component {
 
 
     search(){
-        console.log(this.props.filter.getState);
+
+
+        //tipologia di richiesta
+        localStorage.setItem("requestType",'searchByFilter');
+
+        this.props.history.push("/initialSearch");
     }
 
     render(){
@@ -56,9 +63,20 @@ export default class CitySearchComponent extends React.Component {
             );
 
 
-        return (<div>
+        return (
+            <div
+            className = "row"
+        >
 
-            <input type="text" onChange={this.onTextChange.bind(this)}/>
+                <div className = "col-sm-8">
+
+            <input
+                className = "form-control"
+                type="text"
+                placeholder="città"
+                onChange={this.onTextChange.bind(this)
+
+            }/>
 
             <div>
                 {/* {
@@ -69,7 +87,18 @@ export default class CitySearchComponent extends React.Component {
                 {listItems}
             </div>
 
-            <button onClick={this.search.bind(this)} />
+                </div>
+
+                <div className = "col-sm-4">
+
+            <button
+                className = "btn btn-primary"
+                style={{float:"left"}}
+                onClick={this.search.bind(this)} >
+                Cerca
+            </button>
+
+                </div>
 
         </div>)
     }

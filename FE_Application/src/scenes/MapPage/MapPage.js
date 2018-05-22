@@ -162,7 +162,7 @@ export class MapPage extends React.Component {
     render() {
         const style = {
             width: '100vw',
-            height: '100vh'
+            height: '120vh'
         }
 
 
@@ -187,39 +187,11 @@ export class MapPage extends React.Component {
             <div style={style}>
 
             <div className="col-sm-6">
-                <div>
-                    <div className = "container">
-                        <div className = "row">
-                            <div className = "col-6 mr-auto ml-auto">
-                                <form onSubmit = {this.onSubmit.bind(this)}>
-                                    <div className = "form-group; col-sm-6 ">
-                                        <input
-                                            type="text"
-                                            className = "form-control"
-                                            placeholder="città"
-                                            value = {this.state.city || ''}
-                                            onChange = {this.changeCity.bind(this)}/>
 
-                                        <button
-                                            className = "btn btn-primary pull-right"
-                                            onClick={this.getHouses.bind(this)}>
-                                            Cerca
-                                        </button>
-                                    </div>
+                <CitySearchComponent history={this.props.history} />
 
+                <Filter/>
 
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br/>
-
-                <CitySearchComponent filter={filter}/>
-
-                <Filter handler={this.searchByFilter.bind(this)}/>
             </div>
 
 
